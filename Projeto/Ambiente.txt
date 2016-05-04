@@ -6,7 +6,7 @@ IDE - Eclipse PHP
 32 bits - https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/mars/2/eclipse-php-mars-2-win32.zip
 64 bits - https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/mars/2/eclipse-php-mars-2-win32-x86_64.zip 
 
-Alterei o arquivo	
+Alterei o arquivo, queremos churrasco tbm.
 
 Configurar porta Apache  *(Não Obrigatorio)
 Acessar o arquivo httpd.conf na pasta de instalação do Xampp, dentro do arquivo procurar por Listen 80 e ServerName localhost:80, substituir o 80 pela porta desejada.
