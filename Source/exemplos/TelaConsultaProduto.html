@@ -13,21 +13,21 @@
 <title>Dispenser Inove</title>
 
 <!-- Font awesome -->
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<!-- Sandstone Bootstrap CSS -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<!-- Bootstrap Datatables -->
-<link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
-<!-- Bootstrap social button library -->
-<link rel="stylesheet" href="css/bootstrap-social.css">
-<!-- Bootstrap select -->
-<link rel="stylesheet" href="css/bootstrap-select.css">
-<!-- Bootstrap file input -->
-<link rel="stylesheet" href="css/fileinput.min.css">
-<!-- Awesome Bootstrap checkbox -->
-<link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
-<!-- Admin Stye -->
-<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="../css/font-awesome.min.css">
+	<!-- Sandstone Bootstrap CSS -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<!-- Bootstrap Datatables -->
+	<link rel="stylesheet" href="../css/dataTables.bootstrap.min.css">
+	<!-- Bootstrap social button library -->
+	<link rel="stylesheet" href="../css/bootstrap-social.css">
+	<!-- Bootstrap select -->
+	<link rel="stylesheet" href="../css/bootstrap-select.css">
+	<!-- Bootstrap file input -->
+	<link rel="stylesheet" href="../css/fileinput.min.css">
+	<!-- Awesome Bootstrap checkbox -->
+	<link rel="stylesheet" href="../css/awesome-bootstrap-checkbox.css">
+	<!-- Admin Stye -->
+	<link rel="stylesheet" href="../css/style.css">
 
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -42,7 +42,7 @@
 			class="img-responsive" alt=""></a> <span class="menu-btn"><i
 			class="fa fa-bars"></i></span>
 		<ul class="ts-profile-nav">
-			<li class="ts-account"><a href="#">Dorcas Miguel<i
+			<li class="ts-account"><a href="#">Cristiano Soares<i
 					class="fa fa-angle-down hidden-side"></i></a>
 				<ul>
 					<li><a href="#">Minha Conta</a></li>
@@ -93,7 +93,7 @@
 				<div class="row">
 					<div class="col-md-12">
 
-						<h2 class="page-title">Tela de Retirada de Medicamentos</h2>
+						<h2 class="page-title">Tela de Consulta de Produtos</h2>
 
 						<div class="panel panel-default">
 							<div class="panel-heading"></div>
@@ -102,9 +102,9 @@
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="col-sm-2 control-label">Nº Atendimento</label>
+												<label class="col-sm-2 control-label">Código do Produto</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control" placeholder="Número Atendimento">
+													<input type="text" class="form-control" placeholder="Código do Produto">
 												</div>
 												<div class="col-md-3">
 												<button class="btn btn-default" >Pesquisar</button>
@@ -116,7 +116,7 @@
 											</div>
 											
 										</div>
-										<div class="col-md-12">
+									<!-- 	<div class="col-md-12">
 											<div class="form-group">
 												<label class="col-sm-2 control-label">Paciente</label>
 												<div class="col-sm-10">
@@ -125,9 +125,9 @@
 												</div>
 												
 											</div>
-											
+																			
 										</div>
-										
+									-->	
 										<!--<div class="col-md-2">
 												<button class="btn btn-default" >Pesquisar</button>
 										</div> -->
@@ -138,13 +138,35 @@
 													<tr>
 														<th>Código</th>
 														<th>Produto</th>
-														<th>Quantidade</th>
-														<th>Data Saída</th>
+														<th>Data de Validade</th>
+														<th>Status</th>
 													</tr>
+								
 													
 												</thead>
 												<tbody>
-													
+													<tr>
+														<th>-</th>
+														<th>-</th>
+														<th>-</th>
+														<th>
+														<select class="form-control">
+															<option>Ativo</option>
+															<option>Inativo</option>
+														</select>
+														</th>
+													</tr>
+													<tr>
+														<th>-</th>
+														<th>-</th>
+														<th>-</th>
+														<th>
+														<select class="form-control">
+															<option>Ativo</option>
+															<option>Inativo</option>
+														</select>
+														</th>
+													</tr>
 												</tbody>
 												
 											</table>
@@ -154,14 +176,14 @@
 								</form>
 							</div>
 						</div>
-
+<!-- 
 				<div class="modal-footer">
 						<button type="button" class="btn btn-primary">Salvar</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 						
 				</div>		
 	
-
+-->
 				<div class="row" style="position: absolute;">
 					<div class="clearfix pt pb">
 						<div class="col-md-12">
@@ -175,15 +197,15 @@
 	</div>
 
 	<!-- Loading Scripts -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap-select.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.dataTables.min.js"></script>
-	<script src="js/dataTables.bootstrap.min.js"></script>
-	<script src="js/Chart.min.js"></script>
-	<script src="js/fileinput.js"></script>
-	<script src="js/chartData.js"></script>
-	<script src="js/main.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap-select.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/jquery.dataTables.min.js"></script>
+	<script src="../js/dataTables.bootstrap.min.js"></script>
+	<script src="../js/Chart.min.js"></script>
+	<script src="../js/fileinput.js"></script>
+	<script src="../js/chartData.js"></script>
+	<script src="../js/main.js"></script>
 
 </body>
 

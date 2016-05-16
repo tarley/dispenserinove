@@ -1,23 +1,28 @@
 <?php
+define ( 'HOST', 'localhost' );
+define ( 'DBNAME', 'dispenserinove' );
+define ( 'CHARSET', 'utf8' );
+define ( 'USER', 'root' );
+define ( 'PASSWORD', '' );
 
-class BDConnection{
-
+class BDConnection {
 	protected $db;
-
-	public function BDConnection(){
-
+	public function BDConnection() {
 		$conn = NULL;
-
-		try{
-			$conn = new PDO("mysql:host=localhost;dbname=test", "root", "");
-			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		} catch(PDOException $e){
-			echo 'ERROR: ' . $e->getMessage();
+		try {
+			$opcoes = array (
+					PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8',
+					PDO::ATTR_PERSISTENT => TRUE 
+			);
+			
+			$conn = new PDO ( "mysql:host=" . HOST . "; dbname=" . DBNAME . "; charset=" . CHARSET . ";", USER, PASSWORD, $opcoes );
+			$conn->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+		} catch ( PDOException $e ) {
+			$conn = NULL;
 		}
 		$this->db = $conn;
 	}
-
-	public function getConnection(){
+	public function getConnection() {
 		return $this->db;
 	}
 }
