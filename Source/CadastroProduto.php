@@ -1,5 +1,21 @@
 <?php
     ob_start();
+	include "BDConnection.php";
+	
+	$codigo = null;
+	$descricao = null;	
+	
+	if (isset ($_POST["Codigo"]) && isset($_POST["Descricao"])){
+
+		$conn = new BDConnection();
+		$conn->getConnection();
+	
+		$codigo = $_POST["Codigo"];
+		$descricao = $_POST["Descricao"];
+		$sql = "insert into produtos values ('$codigo', '$descricao')";
+		$conn->query($sql);
+		$conn = null;
+	}
 ?>
 
 <div class="panel panel-default">
@@ -11,16 +27,16 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label">Codigo do Produto</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control">
+							<input required="true" type="text" class="form-control" name="Codigo">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label">Descri&ccedil;&atilde;o do Produto</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control">
+							<input required="true" type="text" class="form-control" name="Descricao">
 						</div>
 					</div>
-					<div class="form-group">
+					<!--<div class="form-group">
 						<label class="col-sm-2 control-label">Data de Validade</label>
 						<div class="col-sm-3">
 							<input type="date" class="form-control">
@@ -41,7 +57,7 @@
 									name="radioInline"> <label for="inlineRadio2"> Inativo </label>
 							</div>
 						</div>
-					</div>
+					</div>-->
 
 					<div class="col-md-12 col-sm-offset-1">
 						<div class="hr-dashed"></div>

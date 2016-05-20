@@ -1,5 +1,5 @@
 <?php
-define ( 'HOST', 'localhost' );
+define ( 'HOST', '127.0.0.1' );
 define ( 'DBNAME', 'dispenserinove' );
 define ( 'CHARSET', 'utf8' );
 define ( 'USER', 'root' );
@@ -25,6 +25,10 @@ class BDConnection {
 	public function getConnection() {
 		return $this->db;
 	}
+	
+	 public function query($sql) {
+        return $this->db->query($sql);
+    }
 }
 
 ?>
