@@ -65,6 +65,7 @@
 				<li><a href="#"><i class="fa fa-plus"></i> Cadastrar</a>
 					<ul>
 						<li><a href="CadastroProduto.php">Produto</a></li>
+						<li><a href="RegistroDesperdicio.php">Desperd&iacute;cio</a></li>
 					</ul>
 				</li>
 				
