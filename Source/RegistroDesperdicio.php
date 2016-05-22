@@ -22,7 +22,7 @@ ob_start ();
 										<div class="form-group">
 											<label class="col-sm-3 control-label">C&oacute;digo do produto</label>
 											<div class="col-sm-9">
-												<input type="text" class="form-control" placeholder="C&oacute;digo">
+												<input required="true" type="text" class="form-control" placeholder="C&oacute;digo">
 											</div>
 										</div>
 												
@@ -36,7 +36,7 @@ ob_start ();
 										<div class="form-group">
 											<label class="col-sm-3 control-label">Motivo</label>
 											<div class="col-sm-9">
-												<textarea class="form-control" rows="3" placeholder="Descreva o motivo do desperd&iacute;cio"></textarea>
+												<textarea required="true" class="form-control" rows="3" placeholder="Descreva o motivo do desperd&iacute;cio"></textarea>
 											</div>
 										</div>
 												
@@ -59,6 +59,6 @@ ob_start ();
 <?php
 $pagemaincontent = ob_get_contents ();
 ob_end_clean ();
-$pagetitle = "Registro de desperdicio"; // NOME DESSA PÁGINA
+$pagetitle = "Registro de desperdicio"; // NOME DESSA PÃGINA
 include ("masterpage.php"); // Caminho da "masterpage.php"
 ?>
