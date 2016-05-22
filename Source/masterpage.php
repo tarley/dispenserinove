@@ -28,6 +28,8 @@
 <link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
 <!-- Admin Stye -->
 <link rel="stylesheet" href="css/style.css">
+<!-- DatePicker -->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
 
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -111,6 +113,13 @@
 	<script src="js/fileinput.js"></script>
 	<script src="js/chartData.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/datepicker-pt-BR.js"></script>
+	<!-- Inicio Calendario -->
+	<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+	<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+	<script src="js/datepicker-pt-BR.js"></script>
+	<!-- Fim Calendario -->
+	
 </body>
 
 </html>

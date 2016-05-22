@@ -2,6 +2,7 @@
 ob_start ();
 ?>
 
+
 <div class="panel panel-default">
 	<div class="panel-heading">Registro de Desperd&iacute;cio</div>
 	<div class="panel-body">
@@ -34,12 +35,28 @@ ob_start ();
 										</div>
 												
 										<div class="form-group">
-											<label class="col-sm-3 control-label">Motivo</label>
+											<label class="col-sm-3 control-label">Quantidade desperdi&ccedil;ada</label>
 											<div class="col-sm-9">
-												<textarea required="true" class="form-control" rows="3" placeholder="Descreva o motivo do desperd&iacute;cio"></textarea>
+												<input required="true" type="number" class="form-control" placeholder="Quantidade">
 											</div>
 										</div>
 												
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Motivo</label>
+											<div class="col-sm-9">
+												<textarea  required="true" class="form-control" rows="3" placeholder="Descreva o motivo do desperd&iacute;cio"></textarea>
+											</div>
+										</div>
+												
+									</div>
+									
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Data de retorno</label>
+											<div class="col-sm-9">
+												<input required="true" type="text" class="form-control" placeholder="Data de retorno" id="datepicker">	
+											</div>
+										</div>
 									</div>
 											
 									<div class="col-md-12 col-sm-offset-1">
@@ -59,6 +76,6 @@ ob_start ();
 <?php
 $pagemaincontent = ob_get_contents ();
 ob_end_clean ();
-$pagetitle = "Registro de desperdicio"; // NOME DESSA PÃGINA
+$pagetitle = "Registro de desperdicio"; // NOME DESSA PÁGINA
 include ("masterpage.php"); // Caminho da "masterpage.php"
 ?>
