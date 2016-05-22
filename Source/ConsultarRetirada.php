@@ -1,11 +1,17 @@
 <?php
 ob_start ();
-require_once 'BDConnection.php';
+
 $lista = null;
 if (isset ( $_GET [paciente] ) && isset($_GET[medicamento])){
-	$conn = new BDConnection();
+	require_once 'classes/CrudRetirada.php';
 	
+	$paciente = $_GET [paciente];
+	$medicamento = $_GET [medicamento];
+	$conn = new BDConnection();
 	$conn->getConnection();
+	
+	$crud = new CrudRetirada($conn);
+	$lista = $crud->getByFilter($paciente,$medicamento);
 }
 ?>
 <div class="panel panel-default">
@@ -39,7 +45,7 @@ if (isset ( $_GET [paciente] ) && isset($_GET[medicamento])){
 				</div>
 
 				<div class="col-md-2">
-					<button class="btn btn-default" type="button">Pesquisar</button>
+					<button class="btn btn-default" type="submit">Pesquisar</button>
 				</div>
 		</form>
 		<div class="col-md-12 text-left" >
@@ -47,36 +53,35 @@ if (isset ( $_GET [paciente] ) && isset($_GET[medicamento])){
 		<table class="display table table-striped table-bordered table-hover">
 			<thead>
 				<tr>
-					<th>Descri&ccedil;&atilde;o</th>
+					<th>C&oacute;digo Retirada</th>
+					<th>C&oacute;digo Paciente</th>
+					<th>C&oacute;digo Produto</th>
+					<th>Qtd. Sa&iacute;da</th>
+					<th>Data Sa&iacute;da</th>
 					<th>Status</th>
-					<th>Data de Retirada</th>
-					<th>Data de Retorno</th>
+					
 				</tr>
 
 			</thead>
 			<tbody>
-
+				<?php foreach($lista as $key => $value) { ?>
 				<tr>
-					<td>Descri&ccedil;&atilde;o</td>
-					<td>Status</td>
-					<td>Data de Retirada</td>
-					<td>Data de Retorno</td>
+					<td><?php echo $value[cod_retirada]; ?></td>
+					<td><?php echo $value[cod_atendimento]; ?></td>
+					<td><?php echo $value[cod_produto]; ?></td>
+					<td><?php echo $value[num_quant_saida]; ?></td>
+					<td><?php echo $value[dta_saida]; ?></td>
+					<td><?php echo $value[des_status]; ?></td>
 				</tr>
-				<tr>
-					<td>Descri&ccedil;&atilde;o</td>
-					<td>Status</td>
-					<td>Data de Retirada</td>
-					<td>Data de Retorno</td>
-				</tr>
-				<tr>
-					<td>Descri&ccedil;&atilde;o</td>
-					<td>Status</td>
-					<td>Data de Retirada</td>
-					<td>Data de Retorno</td>
-				</tr>
+				<?php }?>
 			</tbody>
 
 		</table>
+		<?php 
+		}
+		else{
+		?>
+		<a href="NovaRetirada.php" class="btn btn-primary">Nova Retirada</a>
 		<?php 
 		}
 		?>

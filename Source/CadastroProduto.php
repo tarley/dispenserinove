@@ -1,6 +1,6 @@
 <?php
     ob_start();
-	include "BDConnection.php";
+	include "classes/BDConnection.php";
 	
 	$codigo = null;
 	$descricao = null;	
