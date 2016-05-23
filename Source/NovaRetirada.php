@@ -1,14 +1,32 @@
 <?php
-ob_start ();
+	ob_start ();
+	
+	include "classes/BDConnection.php";
+	
+	$codigoatend = null;
+	$paciente = null;
+	$codigo = null;
+	$descricao = null;
+	$quantidade = null;
+	$data = null;
+	
+	if (isset ($_POST["codigoatend"]) && isset($_POST["paciente"]) && isset($_POST["codigoprod"]) && isset($_POST["descricao"]) && isset($_POST["quantidade"])
+			&& isset($_POST["data"])){
+	
+		$conn = new BDConnection();
+		$conn->getConnection();
+	
+		$codigo = $_POST["codigoatend"];
+		$paciente = $_POST["paciente"];
+		$paciente = $_POST["codigoprod"];
+		$paciente = $_POST["descricao"];
+		$paciente = $_POST["quantidade"];
+		$paciente = $_POST["data"];
+		$sql = "insert into produtos values ('$codigo', '$descricao')";
+		$conn->query($sql);
+		$conn = null;
+	}
 
-include "BDConnection.php";
-$nome = $_POST['nome'];
-$email = $_POST['email'];
-$senha = $_POST['senha'];
-$sql = "INSERT INTO produtos_retirados (cod_atendimento, cod_produto, cod_status, cod_func, num_quant_saida) VALUES ('$nome', '$email', '$senha')";
-mysql_query($sql) or die(error());
-$response = array("success" => true);
-echo json_encode($response);
 ?>
 
 <div class="panel panel-default">
@@ -57,16 +75,23 @@ echo json_encode($response);
 
 						</thead>
 						<tbody>
+							<tr>
+								<th required="true"  nome = "codigo"></th>
+								<th required="true" nome = "produto"></th>
+								<th required="true" nome = "quantidade"></th>
+								<th required="true" nome = "data" ></th>
+							</tr>
+							
 
 						</tbody>
 
 					</table>
 
 				</div>
-				<div class="col-md-12 col-sm-offset-1">
+				<div class="col-md-5 col-sm-offset-9">
 						<div class="hr-dashed"></div>
-						<button class="btn btn-default" type="reset">Limpar</button>
 						<button class="btn btn-primary" type="submit">Salvar</button>
+						<button class="btn btn-default" type="reset">Limpar</button>
 					</div>
 			</div>
 		</form>
@@ -84,19 +109,13 @@ $(document).ready(function(){
                 required: true,
                 
             },
+            
+            codigo: {
+                required: true,
+                
+            },
           
         },
-        messages: {
-        	Atendimento: {
-                required: "O Codigo do Atendimento é obrigatorio.",
-                
-            },
-            Paciente: {
-                required: "O nome do paciente é obrigatorioo.",
-                
-            },
-            
-        }
 
     });
 });
