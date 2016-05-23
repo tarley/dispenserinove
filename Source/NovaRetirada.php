@@ -5,34 +5,36 @@
 	
 	$codigoatend = null;
 	$paciente = null;
-	$codigo = null;
-	$descricao = null;
+	$codigoprod = null;
+	$produto = null;
 	$quantidade = null;
 	$data = null;
 	
-	if (isset ($_POST["codigoatend"]) && isset($_POST["paciente"]) && isset($_POST["codigoprod"]) && isset($_POST["descricao"]) && isset($_POST["quantidade"])
+	if (isset ($_POST["codatendimento"]) && isset($_POST["paciente"]) && isset($_POST["codproduto"]) && isset($_POST["produto"]) && isset($_POST["quantidade"])
 			&& isset($_POST["data"])){
 	
 		$conn = new BDConnection();
 		$conn->getConnection();
 	
-		$codigo = $_POST["codigoatend"];
-		$paciente = $_POST["paciente"];
-		$paciente = $_POST["codigoprod"];
-		$paciente = $_POST["descricao"];
-		$paciente = $_POST["quantidade"];
-		$paciente = $_POST["data"];
-		$sql = "insert into produtos values ('$codigo', '$descricao')";
+		$codigoatend = $_POST["codatendimento"];
+		$nompaciente = $_POST["paciente"];
+		$codigoprod = $_POST["codproduto"];
+		$nomproduto = $_POST["produto"];
+		$qtde = $_POST["quantidade"];
+		$data = $_POST["data"];
+		$sql = "insert into produtos_retirados values ('$codigoatend', '$nompaciente', '$codigoprod', '$nomproduto', '$qtde', '$data')";
 		$conn->query($sql);
 		$conn = null;
 	}
+	
+	
 
 ?>
 
 <div class="panel panel-default">
 	<div class="panel-heading">Retirar de Medicamento</div>
 	<div class="panel-body">
-		<form method="get" class="form-horizontal">
+		<form method="post" class="form-horizontal">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="form-group">
@@ -76,10 +78,10 @@
 						</thead>
 						<tbody>
 							<tr>
-								<th required="true"  nome = "codigo"></th>
-								<th required="true" nome = "produto"></th>
-								<th required="true" nome = "quantidade"></th>
-								<th required="true" nome = "data" ></th>
+								<th><input required="true" type="text"  name ="codigoprod" style="border:0;"/></th>
+								<th><input required="true" type="text" name ="produto" width="90%"/></th>
+								<th><input required="true" type="number" name ="quantidade" width="10%" step="1" size="3" max="6" min="2" /></th>
+								<th><input required="true" type="date" name ="data" width="10%" /></th>
 							</tr>
 							
 
@@ -106,13 +108,23 @@ $(document).ready(function(){
                 minlength: 10
             },
             Paciente: {
-                required: true,
-                
+                required: true,   
             },
             
-            codigo: {
-                required: true,
-                
+            Codigo: {
+                required: true,    
+            },
+            
+            Produto: {
+                required: true,    
+            },
+
+            Quantidade: {
+                required: true,    
+            },
+
+            Data Saída: {
+                required: true,    
             },
           
         },
