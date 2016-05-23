@@ -73,9 +73,45 @@ ob_start ();
 		</form>
 	</div>
 </div>
+
+<script type="text/javascript"> 
+  $(document).ready(function(){ 
+     $('#formulario').validate({ 
+         rules: { 
+         	Atendimento: { 
+                 required: true, 
+                 minlength: 10 
+             }, 
+             Paciente: { 
+                 required: true,    
+             }, 
+              
+             Codigo: { 
+                 required: true,     
+             }, 
+              
+             Produto: { 
+                 required: true,     
+             }, 
+  
+             Quantidade: { 
+                 required: true,     
+             }, 
+  
+             Data Saída: { 
+                 required: true,     
+             }, 
+            
+         }, 
+  
+     }); 
+ }); 
+</script> 
+
+
 <?php
 $pagemaincontent = ob_get_contents ();
 ob_end_clean ();
-$pagetitle = "Registro de desperdicio"; // NOME DESSA P�GINA
+$pagetitle = "Registro de desperdicio"; // NOME DESSA PÁGINA
 include ("masterpage.php"); // Caminho da "masterpage.php"
 ?>
