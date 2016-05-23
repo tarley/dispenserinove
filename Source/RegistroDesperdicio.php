@@ -74,39 +74,7 @@ ob_start ();
 	</div>
 </div>
 
-<script type="text/javascript"> 
-  $(document).ready(function(){ 
-     $('#formulario').validate({ 
-         rules: { 
-         	Atendimento: { 
-                 required: true, 
-                 minlength: 10 
-             }, 
-             Paciente: { 
-                 required: true,    
-             }, 
-              
-             Codigo: { 
-                 required: true,     
-             }, 
-              
-             Produto: { 
-                 required: true,     
-             }, 
-  
-             Quantidade: { 
-                 required: true,     
-             }, 
-  
-             Data Saída: { 
-                 required: true,     
-             }, 
-            
-         }, 
-  
-     }); 
- }); 
-</script> 
+
 
 
 <?php
