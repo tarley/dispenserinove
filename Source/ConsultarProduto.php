@@ -1,6 +1,4 @@
-<?php
-ob_start ();
-?>
+<?php include_once "BDConnection.php" ?>
 
 <div class="panel panel-default">
 	<div class="panel-heading">Consulta de Produtos</div>
@@ -11,11 +9,11 @@ ob_start ();
 					<div class="form-group">
 						<label class="col-sm-2 control-label">C&oacute;digo do Produto</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control"
-								placeholder="C&oacute;digo do Produto">
+							<input required="true" type="text" name="codigodoproduto" class="form-control"	placeholder="C&oacute;digo do Produto">				
 						</div>
-						<div class="col-md-3">
-							<button class="btn btn-default">Pesquisar</button>
+						<label class="col-sm-0 control-label"></label>
+						<div class="col-sm-3">
+						<button class="btn btn-default" type="submit">Pesquisar</button>
 						</div>
 					</div>
 
@@ -35,7 +33,7 @@ ob_start ();
 
 
 						</thead>
-						<tbody>
+						<!--<tbody>
 							<tr>
 								<th>-</th>
 								<th>-</th>
@@ -54,7 +52,7 @@ ob_start ();
 										<option>Inativo</option>
 								</select></th>
 							</tr>
-						</tbody>
+						</tbody>-->
 
 					</table>
 
@@ -66,6 +64,6 @@ ob_start ();
 <?php
 $pagemaincontent = ob_get_contents ();
 ob_end_clean ();
-$pagetitle = "Consultar Retirada"; // NOME DESSA PÁGINA
+$pagetitle = "Consultar Produto"; // NOME DESSA PÁGINA
 include ("masterpage.php"); // Caminho da "masterpage.php"
 ?>
