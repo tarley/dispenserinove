@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'BDConnection.php';
 
 class Usuario {
@@ -29,11 +30,11 @@ class Usuario {
 			$stmt->bindparam(":NOM_USUARIO", $nom_usuario);
 			$stmt->bindparam(":DTA_CADASTRO", date("Y-m-d H:i:s"));
 			$stmt->bindparam(":ADMIN", $admin);
-			$stmt->execute ();
 			
-			return $stmt;
+			
+			return $stmt->execute () ? true : false;
 		} catch ( PDOException $e ) {
-			echo $e->getMessage ();
+			return false;
 		}
 	}
 	
@@ -57,7 +58,24 @@ class Usuario {
 		}
 		catch(PDOException $e)
 		{
-			echo $e->getMessage();
+			echo "<script>alert('erro')</script>";
 		}
+	}
+	
+	public function is_loggedin()
+	{
+		return isset($_SESSION['user_session']) ? true : false;
+	}
+	
+	public function redirect($url)
+	{
+		header("Location: $url");
+	}
+	
+	public function logout()
+	{
+		session_destroy();
+		unset($_SESSION['user_session']);
+		return true;
 	}
 }

@@ -1,8 +1,8 @@
 <?php
 ob_start ();
 
-$lista = null;
 if (isset ( $_GET [paciente] ) && isset($_GET[medicamento])){
+	$lista = null;
 	require_once 'classes/CrudRetirada.php';
 	
 	$paciente = $_GET [paciente];

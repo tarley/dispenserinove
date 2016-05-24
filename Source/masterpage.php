@@ -1,3 +1,13 @@
+<?php 
+error_reporting(E_ALL & ~(E_NOTICE));
+require_once 'classes/CrudUsuario.php';
+$usuario = new Usuario();
+
+if(!$usuario->is_loggedin()){
+	$usuario->logout();
+	$usuario->redirect("index.php");
+}
+?>
 <!doctype html>
 <html lang="pt-br" class="no-js">
 
@@ -47,7 +57,7 @@
 			<li class="ts-account"><a href="#">Nome Completo <i class="fa fa-angle-down hidden-side"></i></a>
 				<ul>
 					<li><a href="#">Minha Conta</a></li>
-					<li><a href="#">Sair</a></li>
+					<li><a href="sair.php">Sair</a></li>
 				</ul></li>
 		</ul>
 	</div>
@@ -76,7 +86,7 @@
 							class="fa fa-angle-down hidden-side"></i></a>
 						<ul>
 							<li><a href="#">Minha Conta</a></li>
-							<li><a href="#">Sair</a></li>
+							<li><a href="sair.php">Sair</a></li>
 						</ul></li>
 				</ul>
 
