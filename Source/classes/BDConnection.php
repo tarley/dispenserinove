@@ -4,7 +4,7 @@ define ( 'DBNAME', 'dispenserinove' );
 define ( 'CHARSET', 'utf8' );
 define ( 'USER', 'root' );
 define ( 'PASSWORD', '' );
-
+define ( 'CHAVE', 'DispenserInoveNewton2016' );
 class BDConnection {
 	protected $db;
 	public function BDConnection() {
