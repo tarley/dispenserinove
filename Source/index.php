@@ -1,19 +1,18 @@
 <!doctype html>
 <html lang="pt-br" class="no-js">
-
+<!-- Alterei esse arquivo por exemplo     -->
 <head>
-	<meta charset="utf-8">
+	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<meta name="theme-color" content="#3e454c">
 
 	<title>Dispenser Inove</title>
 
-	<!-- Font awesome -->
+	<!-- Fontes -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<!-- Sandstone Bootstrap CSS -->
+	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<!-- Bootstrap Datatables -->
 	<link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
@@ -36,46 +35,45 @@
 </head>
 
 <body>
-	<div class="brand clearfix">
-		<a href="index.html" class="logo"><img src="img/logo.jpg" class="img-responsive" alt=""></a>
-
-		<span class="menu-btn"><i class="fa fa-bars"></i></span>
-		<ul class="ts-profile-nav">
-			<li class="ts-account">
-				<a href="#">Victor Britto<i class="fa fa-angle-down hidden-side"></i></a>
-				<ul>
-					<li><a href="#">Minha Conta</a></li>
-					<li><a href="#">Sair</a></li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-
-	<div class="ts-main-content">
-		<nav class="ts-sidebar" id="menu">
-			
-		</nav>
-		<div class="content-wrapper">
-			<div class="container-fluid">
-
+	
+	<div class="login-page bk-img" style="background-image: url(img/fundo.jpg);">
+		<div class="form-content">
+			<div class="container">
 				<div class="row">
-					<div class="col-md-12" id="conteudo">
-											
-					</div>
-				</div>
-				
-				<div class="row" style="position:absolute; bottom:0;">
-					<div class="clearfix pt pb">
-						<div class="col-md-12">
-							<em>Copyright Newton Paiva. All Right Reserved</em>
+					<div class="col-md-6 col-md-offset-3">
+						<h1 class="text-center text-bold mt-4x"></h1>
+						<div class="well row pt-2x pb-3x bk-light">
+							<div class="col-md-8 col-md-offset-2">
+								<form action="" class="mt">
+
+									<label for="" class="text-uppercase text-sm">Nome de Usuário:</label>
+									<input type="text" placeholder="E-mail" class="form-control mb">
+
+									<label for="" class="text-uppercase text-sm">Senha:</label>
+									<input type="password" placeholder="Senha" class="form-control mb">
+
+									<div class="checkbox checkbox-circle checkbox-info">
+										<input id="checkbox7" type="checkbox" checked>
+										<label for="checkbox7">
+											Mantenha conectado
+										</label>
+									</div>
+
+									<!-- <button class="btn btn-primary btn-block" type="submit">LOGIN</button> -->
+									<a href="ConsultarRetirada.php" class="btn btn-primary btn-block" type="submit">LOGIN</a>
+
+								</form>
+							</div>
+						</div>
+						<div class="text-center text-light">
+							<a href="#" class="text-grey">Esqueceu a senha?</a>
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- Loading Scripts -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap-select.min.js"></script>
@@ -86,27 +84,7 @@
 	<script src="js/fileinput.js"></script>
 	<script src="js/chartData.js"></script>
 	<script src="js/main.js"></script>
-	<script type="text/javascript">
-	$.urlParam = function(name){
-	    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-	    if (results==null){
-	       return null;
-	    }
-	    else{
-	       return results[1] || 0;
-	    }
-	}
-	
-	$( document ).ready(function() {
-		var page = $.urlParam('page');
-		if(page!=null){
-			$("#conteudo").load("pages/"+page+".php");
-		}
 
-		var menu = "menu.php";
-		$("#menu").load(menu);
-	});
-	</script>
 </body>
 
 </html>

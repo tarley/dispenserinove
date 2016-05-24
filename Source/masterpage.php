@@ -103,20 +103,15 @@
 		</div>
 	</div>
 
-	<!-- Loading Scripts -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap-select.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.dataTables.min.js"></script>
 	<script src="js/dataTables.bootstrap.min.js"></script>
-	<script src="js/Chart.min.js"></script>
-	<script src="js/fileinput.js"></script>
-	<script src="js/chartData.js"></script>
 	<script src="js/main.js"></script>
-	<script src="js/datepicker-pt-BR.js"></script>
 	<!-- Inicio Calendario -->
-	<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-	<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+	<script src="js/jquery-1.8.2.js"></script>
+	<script src="js/jquery-ui.js"></script>
 	<script src="js/datepicker-pt-BR.js"></script>
 	<!-- Fim Calendario -->
 	
