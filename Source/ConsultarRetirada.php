@@ -7,10 +7,8 @@ if (isset ( $_GET [paciente] ) && isset($_GET[medicamento])){
 	
 	$paciente = $_GET [paciente];
 	$medicamento = $_GET [medicamento];
-	$conn = new BDConnection();
-	$conn->getConnection();
-	
-	$crud = new CrudRetirada($conn);
+
+	$crud = new CrudRetirada();
 	$lista = $crud->getByFilter($paciente,$medicamento);
 }
 ?>

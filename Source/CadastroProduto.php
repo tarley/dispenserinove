@@ -1,64 +1,37 @@
 <?php
     ob_start();
-	include "classes/BDConnection.php";
 	
-	$codigo = null;
-	$descricao = null;	
-	
-	if (isset ($_POST["Codigo"]) && isset($_POST["Descricao"])){
-
-		$conn = new BDConnection();
-		$conn->getConnection();
-	
-		$codigo = $_POST["Codigo"];
-		$descricao = $_POST["Descricao"];
-		$sql = "insert into produtos values ('$codigo', '$descricao')";
-		$conn->query($sql);
-		$conn = null;
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		require_once 'classes/CrudProduto.php';
+		require_once 'classes/Util.php';
+		$u = new Util();
+		$crud = new CrudProduto();
+		if($crud->insert($_POST["Codigo"], $_POST["Descricao"])){
+			$u->alerta("Produto gravado com sucesso!");
+		}else{
+			$u->alerta("Erro ao tentar gravar produto!");
+		}
 	}
 ?>
 
 <div class="panel panel-default">
 	<div class="panel-heading">Cadastro de Produtos</div>
 	<div class="panel-body">
-		<form method="post" class="form-horizontal">
+		<form method="post" class="form-horizontal" id="frmProduto">
 			<div class="row">
 				<div class="col-md-10">
 					<div class="form-group">
-						<label class="col-sm-2 control-label">Codigo do Produto</label>
+						<label class="col-sm-2 control-label">C&oacute;digo do Produto</label>
 						<div class="col-sm-3">
-							<input required="true" type="text" class="form-control" name="Codigo">
+							<input required="required" type="number" class="form-control" name="Codigo" id="codigo" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label">Descri&ccedil;&atilde;o do Produto</label>
 						<div class="col-sm-3">
-							<input required="true" type="text" class="form-control" name="Descricao">
+							<input required="required" type="text" class="form-control" name="Descricao" id="descricao" />
 						</div>
 					</div>
-					<!--<div class="form-group">
-						<label class="col-sm-2 control-label">Data de Validade</label>
-						<div class="col-sm-3">
-							<input type="date" class="form-control">
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Status do Pedido <br>
-						</label>
-						<div class="col-sm-10">
-							<div class="radio radio-info radio-inline">
-								<input type="radio" id="inlineRadio1" value="option1"
-									name="radioInline" checked=""> <label for="inlineRadio1"> Ativo
-								</label>
-							</div>
-							<div class="radio radio-inline">
-								<input type="radio" id="inlineRadio2" value="option2"
-									name="radioInline"> <label for="inlineRadio2"> Inativo </label>
-							</div>
-						</div>
-					</div>-->
-
 					<div class="col-md-12 col-sm-offset-1">
 						<div class="hr-dashed"></div>
 						<button class="btn btn-default" type="reset">Limpar</button>
