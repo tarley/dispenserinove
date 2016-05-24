@@ -1,32 +1,17 @@
 <?php
 	ob_start ();
 	
-	include "classes/BDConnection.php";
-	
-	$codigoatend = null;
-	$paciente = null;
-	$codigoprod = null;
-	$produto = null;
-	$quantidade = null;
-	$data = null;
-	
-	if (isset ($_POST["codatendimento"]) && isset($_POST["paciente"]) && isset($_POST["codproduto"]) && isset($_POST["produto"]) && isset($_POST["quantidade"])
-			&& isset($_POST["data"])){
-	
-		$conn = new BDConnection();
-		$conn->getConnection();
-	
-		$codigoatend = $_POST["codatendimento"];
-		$nompaciente = $_POST["paciente"];
-		$codigoprod = $_POST["codproduto"];
-		$nomproduto = $_POST["produto"];
-		$qtde = $_POST["quantidade"];
-		$data = $_POST["data"];
-		$sql = "insert into produtos_retirados values ('$codigoatend', '$nompaciente', '$codigoprod', '$nomproduto', '$qtde', '$data')";
-		$conn->query($sql);
-		$conn = null;
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		require_once 'classes/CrudRetirada.php';
+		require_once 'classes/Util.php';
+		$u = new Util();
+		$crud = new CrudProduto();
+		if($crud->insert($_POST["Codatendimento"], $_POST["codproduto"], $_POST["codstatus"], $_POST["codfunc"], $_POST["quantidade"], $_POST["datasaida"])){
+			$u->alerta("Retidada de medicamentos gravada com sucesso!");
+		}else{
+			$u->alerta("Erro ao tentar gravar Retidada de medicamentos!");
+		}
 	}
-	
 	
 
 ?>
@@ -69,19 +54,19 @@
 					<table class="table table-bordered">
 						<thead>
 							<tr>
-								<th>C&oacute;digo</th>
-								<th>Produto</th>
-								<th>Quantidade</th>
-								<th>Data Sa&iacute;da</th>
+								<th class="col-md-2">C&oacute;digo</th>
+								<th class="col-md-9">Produto</th>
+								<th >Quantidade</th>
+								<th class="col-md-2">Data Sa&iacute;da</th>
 							</tr>
 
 						</thead>
 						<tbody>
 							<tr>
-								<th><input required="true" type="text"  name ="codigoprod" style="border:0;"/></th>
-								<th><input required="true" type="text" name ="produto" width="90%"/></th>
-								<th><input required="true" type="number" name ="quantidade" width="10%" step="1" size="3" max="6" min="2" /></th>
-								<th><input required="true" type="date" name ="data" width="10%" /></th>
+								<th><input required="true" type="text"  name ="codproduto" style="border:0;"/></th>
+								<th><input required="true" type="text" name ="produto"  style="border:0;"/></th>
+								<th><input required="true" type="number" name ="quantidade"  step="1" size="3" max="6" min="2" /></th>
+								<th><input required="true" type="date" name ="data"  /></th>
 							</tr>
 							
 
