@@ -1,4 +1,18 @@
-<?php include_once "BDConnection.php" ?>
+<?php
+ob_start ();
+
+$lista = null;
+
+	if (isset ($_GET ["codigodoproduto"])){
+		require_once 'classes/CrudProduto.php';
+		$codProduto = $_GET["codigodoproduto"];
+		$conn = new BDConnection();
+		$conn->getConnection();
+		
+		$crud = new CrudProduto($conn);
+		$lista = $crud->getByFilter($codProduto);
+	}
+?>
 
 <div class="panel panel-default">
 	<div class="panel-heading">Consulta de Produtos</div>
@@ -9,7 +23,8 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label">C&oacute;digo do Produto</label>
 						<div class="col-sm-3">
-							<input required="true" type="text" name="codigodoproduto" class="form-control"	placeholder="C&oacute;digo do Produto">				
+							
+							<input required="true" type="number" name="codigodoproduto" class="form-control"	placeholder="C&oacute;digo do Produto">				
 						</div>
 						<label class="col-sm-0 control-label"></label>
 						<div class="col-sm-3">
@@ -21,38 +36,23 @@
 
 				</div>
 				<div>
-
+					<?php if($lista != null){ ?>
 					<table class="table table-bordered">
 						<thead>
 							<tr>
 								<th>C&oacute;digo</th>
 								<th>Produto</th>
-								<th>Data de Validade</th>
-								<th>Status</th>
 							</tr>
-
-
+					<?php } ?>
 						</thead>
-						<!--<tbody>
+						<tbody>
+							<?php foreach($lista as $key => $value) { ?>
 							<tr>
-								<th>-</th>
-								<th>-</th>
-								<th>-</th>
-								<th><select class="form-control">
-										<option>Ativo</option>
-										<option>Inativo</option>
-								</select></th>
+								<th><?php echo $value["cod_produto"]; ?></th>
+								<th><?php echo $value["des_produto"]; ?></th>
 							</tr>
-							<tr>
-								<th>-</th>
-								<th>-</th>
-								<th>-</th>
-								<th><select class="form-control">
-										<option>Ativo</option>
-										<option>Inativo</option>
-								</select></th>
-							</tr>
-						</tbody>-->
+							<?php }?>
+						</tbody>
 
 					</table>
 
@@ -61,9 +61,13 @@
 		</form>
 	</div>
 </div>
+
+
+
+</script>
 <?php
 $pagemaincontent = ob_get_contents ();
 ob_end_clean ();
-$pagetitle = "Consultar Produto"; // NOME DESSA PÁGINA
+$pagetitle = "Consultar Retirada"; // NOME DESSA PÁGINA
 include ("masterpage.php"); // Caminho da "masterpage.php"
 ?>
