@@ -7,7 +7,8 @@ define ( 'PASSWORD', '' );
 define ( 'CHAVE', 'DispenserInoveNewton2016' );
 class BDConnection {
 	protected $db;
-	public function BDConnection() {
+	
+	function __construct() {
 		$conn = NULL;
 		try {
 			$opcoes = array (
@@ -22,6 +23,7 @@ class BDConnection {
 		}
 		$this->db = $conn;
 	}
+	
 	public function getConnection() {
 		return $this->db;
 	}
