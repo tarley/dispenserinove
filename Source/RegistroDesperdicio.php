@@ -1,12 +1,24 @@
 <?php
 ob_start ();
+
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		require_once 'classes/CrudDesperdicio.php';
+		require_once 'classes/Util.php';
+		$u = new Util();
+		$crud = new CrudDesperdicio();
+		if($crud->desperdicio($_POST["codretorno"],$_POST["codretirada"], $_POST["data"], $_POST["quantidade"], $_POST["motivo"])){
+			$u->alerta("Desperdício registrado com sucesso!");
+		}else{
+			$u->alerta("Erro ao tentar registrar desperdício!");
+		}
+	}
 ?>
 
 
 <div class="panel panel-default">
 	<div class="panel-heading">Registro de Desperd&iacute;cio</div>
 	<div class="panel-body">
-		<form method="get" class="form-horizontal">
+		<form method="post" class="form-horizontal">
 			<div class="row">
 				<div class="col-md-12">
 					
@@ -17,34 +29,35 @@ ob_start ();
 				<div>
 							
 						<div class="panel-body">
-							<form method="get" class="form-horizontal">
+							<form method="post" class="form-horizontal">
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="col-sm-3 control-label">C&oacute;digo do produto</label>
+											<label class="col-sm-3 control-label">C&oacute;digo de retorno</label>
 											<div class="col-sm-9">
-												<input required="true" type="text" class="form-control" placeholder="C&oacute;digo">
+												<input required="true" type="number" class="form-control" placeholder="C&oacute;digo do retorno" name="codretorno" id="codretorno">
 											</div>
 										</div>
 												
 										<div class="form-group">
-											<label class="col-sm-3 control-label">Produto</label>
+											<label class="col-sm-3 control-label">C&oacute;digo de retirada do produto</label>
 											<div class="col-sm-9">
-												<input type="text" class="form-control" placeholder="Nome do Produto">
+												<input required="true" type="number" class="form-control" placeholder="C&oacute;digo de retirada" name="codretirada" id="codretirada">
 											</div>
 										</div>
 												
 										<div class="form-group">
 											<label class="col-sm-3 control-label">Quantidade desperdi&ccedil;ada</label>
 											<div class="col-sm-9">
-												<input required="true" type="number" class="form-control" placeholder="Quantidade">
+												<input required="true" type="number" class="form-control" placeholder="Quantidade" name="quantidade" id="quantidade">
 											</div>
 										</div>
 												
 										<div class="form-group">
 											<label class="col-sm-3 control-label">Motivo</label>
 											<div class="col-sm-9">
-												<textarea  required="true" class="form-control" rows="3" placeholder="Descreva o motivo do desperd&iacute;cio"></textarea>
+												<textarea  required="true" class="form-control" rows="3" placeholder="Descreva o motivo do desperd&iacute;cio" name="motivo"
+												id="motivo"></textarea>
 											</div>
 										</div>
 												
@@ -54,7 +67,7 @@ ob_start ();
 										<div class="form-group">
 											<label class="col-sm-3 control-label">Data de retorno</label>
 											<div class="col-sm-9">
-												<input required="true" type="text" class="form-control" placeholder="Data de retorno" id="datepicker">	
+												<input required="true" type="text" class="form-control" placeholder="Data de retorno" id="datepicker" name="data">	
 											</div>
 										</div>
 									</div>
