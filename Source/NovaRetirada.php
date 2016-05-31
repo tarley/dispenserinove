@@ -19,69 +19,53 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="panel panel-default">
 	<div class="panel-heading">Retirar de Medicamento</div>
 	<div class="panel-body">
-		<form method="post" class="form-horizontal">
+		
 			<div class="row">
 				<div class="col-md-12">
-					<div class="form-group">
-						<label class="col-sm-2 control-label">N&ordm; Atendimento</label>
-						<div class="col-sm-3">
-							<input required="true" type="text" class="form-control"
-								placeholder="N&uacute;mero Atendimento">
+					<form method="get" class="form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">N&ordm; Atendimento</label>
+							<div class="col-sm-3">
+								<?php if(!isset($_GET[n_atendimento])){ ?>
+								<input type="text" name="n_atendimento" class="form-control" placeholder="N&uacute;mero Atendimento">
+								<?php } else{?>
+								<input type="text" name="n_atendimento" value="<?php echo $_GET[n_atendimento]; ?>" class="form-control" placeholder="N&uacute;mero Atendimento">
+								<?php } ?>
+							</div>
+							<div class="col-md-3">
+								<button class="btn btn-default">Pesquisar</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<h3>Produto</h3>
+			<div class="row">
+				<div class="col-md-12">
+					<form method="post" class="form-horizontal">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label class="col-sm-5 control-label">Cod. do Produto: </label>
+								<div class="col-sm-7">
+								<input type="text" name="cod_produto" class="form-control">
+								</div>
+							</div>
 						</div>
 						<div class="col-md-3">
-							<button class="btn btn-default">Pesquisar</button>
+							<div class="form-group">
+								<label class="col-sm-5 control-label">Quantidade:</label>
+								<div class="col-sm-7">
+								<input type="number" name="qtd" class="form-control">
+								</div>
+							</div>
 						</div>
-					</div>
-
-					<div class="form-group"></div>
-
-				</div>
-				<div class="col-md-12">
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Paciente</label>
-						<div class="col-sm-10">
-							<input required="true" type="text" class="form-control"
-								placeholder="Nome do Paciente">
-
+						<div class="col-md-4">
+							<button class="btn btn-primary" type="submit">Salvar</button>
 						</div>
-
-					</div>
-
+					</form>
 				</div>
-
-				<div>
-
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th class="col-md-2">C&oacute;digo</th>
-								<th class="col-md-9">Produto</th>
-								<th >Quantidade</th>
-								<th class="col-md-2">Data Sa&iacute;da</th>
-							</tr>
-
-						</thead>
-						<tbody>
-							<tr>
-								<th><input required="true" type="text"  name ="codproduto" style="border:0;"/></th>
-								<th><input required="true" type="text" name ="produto"  style="border:0;"/></th>
-								<th><input required="true" type="number" name ="quantidade"  step="1" size="3" max="6" min="2" /></th>
-								<th><input required="true" type="date" name ="data"  /></th>
-							</tr>
-							
-
-						</tbody>
-
-					</table>
-
-				</div>
-				<div class="col-md-5 col-sm-offset-9">
-						<div class="hr-dashed"></div>
-						<button class="btn btn-primary" type="submit">Salvar</button>
-						<button class="btn btn-default" type="reset">Limpar</button>
-					</div>
 			</div>
-		</form>
+		
 	</div>
 </div>
 <script type="text/javascript">

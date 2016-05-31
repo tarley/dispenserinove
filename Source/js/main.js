@@ -17,16 +17,4 @@
  	$('.menu-btn').click(function () {
  		$('nav.ts-sidebar').toggleClass('menu-open');
  	});
-	 
-	 
-	 $('#zctb').DataTable();
-	 
-	 
-	 $("#input-43").fileinput({
-		showPreview: false,
-		allowedFileExtensions: ["zip", "rar", "gz", "tgz"],
-		elErrorContainer: "#errorBlock43"
-			// you can configure `msgErrorClass` and `msgInvalidFileExtension` as well
-	});
-
  });

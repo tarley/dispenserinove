@@ -45,7 +45,7 @@ if(!$usuario->is_loggedin()){
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+<script src="js/jquery.min.js"></script>
 </head>
 
 <body>
@@ -54,7 +54,7 @@ if(!$usuario->is_loggedin()){
 			class="img-responsive" alt=""></a> <span class="menu-btn"><i
 			class="fa fa-bars"></i></span>
 		<ul class="ts-profile-nav">
-			<li class="ts-account"><a href="#">Nome Completo <i class="fa fa-angle-down hidden-side"></i></a>
+			<li class="ts-account"><a href="#"> <?php echo $_SESSION[user_session][NOM_FUNC]; ?> <i class="fa fa-angle-down hidden-side"></i></a>
 				<ul>
 					<li><a href="#">Minha Conta</a></li>
 					<li><a href="sair.php">Sair</a></li>
@@ -78,11 +78,14 @@ if(!$usuario->is_loggedin()){
 					<ul>
 						<li><a href="CadastroProduto.php">Produto</a></li>
 						<li><a href="RegistroDesperdicio.php">Desperd&iacute;cio</a></li>
+						<?php if($_SESSION[user_session][ADMIN] == 1){ ?>
+						<li><a href="CadastroUsuario.php">Usu&aacute;rio</a></li>
+						<?php } ?>
 					</ul>
 				</li>
 				
 				<ul class="ts-profile-nav">
-					<li class="ts-account"><a href="#">Nome Completo <i
+					<li class="ts-account"><a href="#"><?php echo $_SESSION[user_session][NOM_FUNC]; ?><i
 							class="fa fa-angle-down hidden-side"></i></a>
 						<ul>
 							<li><a href="#">Minha Conta</a></li>
@@ -112,18 +115,14 @@ if(!$usuario->is_loggedin()){
 			</div>
 		</div>
 	</div>
-
-	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap-select.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.dataTables.min.js"></script>
 	<script src="js/dataTables.bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
-	<!-- Inicio Calendario -->
 	<script src="js/jquery-1.8.2.js"></script>
 	<script src="js/jquery-ui.js"></script>
-	<script src="js/datepicker-pt-BR.js"></script>
-	<!-- Fim Calendario -->
+	<script src="js/datepicker-pt-BR.js"></script>	
 	
 </body>
 
