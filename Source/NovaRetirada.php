@@ -26,10 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 						<div class="form-group">
 							<label class="col-sm-2 control-label">N&ordm; Atendimento</label>
 							<div class="col-sm-3">
-								<?php if(!isset($_GET[n_atendimento])){ ?>
+								<?php if(!isset($_GET['n_atendimento'])){ ?>
 								<input type="text" name="n_atendimento" class="form-control" placeholder="N&uacute;mero Atendimento">
 								<?php } else{?>
-								<input type="text" name="n_atendimento" value="<?php echo $_GET[n_atendimento]; ?>" class="form-control" placeholder="N&uacute;mero Atendimento">
+								<input type="text" name="n_atendimento" value="<?php echo $_GET['n_atendimento']; ?>" class="form-control" placeholder="N&uacute;mero Atendimento">
 								<?php } ?>
 							</div>
 							<div class="col-md-3">
@@ -92,7 +92,7 @@ $(document).ready(function(){
                 required: true,    
             },
 
-            Data Saída: {
+            Data Saï¿½da: {
                 required: true,    
             },
           
@@ -107,6 +107,6 @@ $(document).ready(function(){
 <?php
 $pagemaincontent = ob_get_contents ();
 ob_end_clean ();
-$pagetitle = "Nova Retirada"; // NOME DESSA PÁGINA
+$pagetitle = "Nova Retirada"; // NOME DESSA Pï¿½GINA
 include ("masterpage.php"); // Caminho da "masterpage.php"
 ?>

@@ -1,3 +1,22 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	require_once 'classes/CrudUsuario.php';
+	require_once 'classes/Util.php';
+	$u = new Util();
+	$usuario = $_POST['usuario'];
+	$senha = $_POST['senha'];
+	
+	$crud = new Usuario();
+	
+	if($crud->login($usuario, $senha)){
+		$crud->redirect("ConsultarRetirada.php");
+	}else {
+		$crud->logout();
+		$u->alerta("Credenciais informadas incorretas!");
+	}
+
+}
+?>
 <!doctype html>
 <html lang="pt-br" class="no-js">
 <head>
@@ -32,25 +51,6 @@
 </head>
 
 <body>
-	<?php 
-	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		require_once 'classes/CrudUsuario.php';
-		require_once 'classes/Util.php';
-		$u = new Util();
-		$usuario = $_POST['usuario'];
-		$senha = $_POST['senha'];
-		
-		$crud = new Usuario();
-		
-		if($crud->login($usuario, $senha)){
-			$crud->redirect("ConsultarRetirada.php");
-		}else {
-			$crud->logout();
-			$u->alerta("Credenciais informadas incorretas!");
-		}
-
-	}
-	?>
 	<div class="login-page bk-img" style="background-image: url(img/fundo.jpg);">
 		<div class="form-content">
 			<div class="container">

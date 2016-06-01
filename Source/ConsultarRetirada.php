@@ -1,12 +1,12 @@
 <?php
 ob_start ();
+$lista = null;
 
-if (isset ( $_GET [paciente] ) && isset($_GET[medicamento])){
-	$lista = null;
+if (isset ( $_GET ['paciente'] ) && isset($_GET['medicamento'])){
 	require_once 'classes/CrudRetirada.php';
 	
-	$paciente = $_GET [paciente];
-	$medicamento = $_GET [medicamento];
+	$paciente = $_GET ['paciente'];
+	$medicamento = $_GET ['medicamento'];
 
 	$crud = new CrudRetirada();
 	$lista = $crud->getByFilter($paciente,$medicamento);
@@ -91,6 +91,6 @@ if (isset ( $_GET [paciente] ) && isset($_GET[medicamento])){
 <?php
 $pagemaincontent = ob_get_contents ();
 ob_end_clean ();
-$pagetitle = "Consultar Retirada"; // NOME DESSA PÁGINA
+$pagetitle = "Consultar Retirada"; // NOME DESSA Pï¿½GINA
 include ("masterpage.php"); // Caminho da "masterpage.php"
 ?>

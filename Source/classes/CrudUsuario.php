@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'BDConnection.php';
+require_once 'Logger.php';
 
 class Usuario {
 	
@@ -65,6 +66,7 @@ class Usuario {
 		try
 		{
 			$senha = md5($senha+CHAVE);
+			Logger("Usuario: " . $usuario . " Senha: " . $senha . " DB" . isset($this->db));
 			$stmt = $this->db->prepare("SELECT * FROM funcionario_farmacia WHERE NOM_USUARIO=:usuario AND COD_SENHA=:senha LIMIT 1");
 			$stmt->execute(array(':usuario'=>$usuario, ':senha'=>$senha));
 			$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
@@ -80,6 +82,7 @@ class Usuario {
 		}
 		catch(PDOException $e)
 		{
+			Logger($e);
 			echo false;
 		}
 	}

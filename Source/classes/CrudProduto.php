@@ -13,7 +13,7 @@ class CrudProduto {
 	
 	public function getByFilter($codProduto){
 		
-		$sql .= "select p.cod_produto, p.des_produto";
+		$sql = "select p.cod_produto, p.des_produto";
 		$sql .= "  from produto p ";
 		$sql .= "where p.cod_produto= :codProduto" ;
 		$sth = $this->db->prepare($sql);
