@@ -13,7 +13,7 @@ class CrudRetirada {
 	
 	public function getByFilter($codPaciente, $codProduto){
 		
-		$sql .= "select pr.cod_retirada, pr.cod_atendimento, pr.cod_produto, pr.num_quant_saida, dta_saida, sp.des_status ";
+		$sql = "select pr.cod_retirada, pr.cod_atendimento, pr.cod_produto, pr.num_quant_saida, dta_saida, sp.des_status ";
 		$sql .= "from produto_retirado pr ";
 		$sql .= "join situacao_produto sp on sp.cod_status=pr.cod_status ";
 		$sql .= "where cod_atendimento = :codAtendimento and cod_produto= :codProduto";

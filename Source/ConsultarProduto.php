@@ -42,8 +42,7 @@ $lista = null;
 							<tr>
 								<th>C&oacute;digo</th>
 								<th>Produto</th>
-							</tr>
-					<?php } ?>
+							</tr>					
 						</thead>
 						<tbody>
 							<?php foreach($lista as $key => $value) { ?>
@@ -55,7 +54,7 @@ $lista = null;
 						</tbody>
 
 					</table>
-
+					<?php } ?>
 				</div>
 			</div>
 		</form>
@@ -68,6 +67,6 @@ $lista = null;
 <?php
 $pagemaincontent = ob_get_contents ();
 ob_end_clean ();
-$pagetitle = "Consultar Retirada"; // NOME DESSA PÁGINA
+$pagetitle = "Consultar Retirada"; // NOME DESSA Pï¿½GINA
 include ("masterpage.php"); // Caminho da "masterpage.php"
 ?>
