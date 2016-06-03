@@ -75,6 +75,7 @@ if(!$usuario->is_loggedin()){
 				</li>
 				<li><a href="#"><i class="fa fa-plus"></i> Cadastrar</a>
 					<ul>
+						<li><a href="CadastroPaciente.php">Paciente</a></li>
 						<li><a href="CadastroProduto.php">Produto</a></li>
 						<li><a href="RegistroDesperdicio.php">Desperd&iacute;cio</a></li>
 						<?php if($_SESSION[user_session][ADMIN] == 1){ ?>

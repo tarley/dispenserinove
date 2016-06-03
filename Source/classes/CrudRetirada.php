@@ -33,18 +33,18 @@ class CrudRetirada {
 	public function insert($cod_atendimento, $cod_produto, $cod_status, $cod_func, $num_qtd_saida, $data_saida){
 		try {
 			$sql .= "INSERT INTO produto_retirado ";
-			$sql .= "(COD_ATENDIMENTO, COD_PRODUTO, COD_STATUS, COD_FUNC, NUM_QUANT_SAIDA, DTA_SAIDA) ";
+			$sql .= "(cod_atendimento, cod_produto, cod_status, cod_func, num_quant_saida, dta_saida) ";
 			$sql .= "VALUES ";
-     		$sql .= "(:cod_atendimento, :cod_produto, cod_status, :cod_func, :num_qtd_saida, :data_saida)";
+     		$sql .= "(:cod_atendimento, :cod_produto, :cod_status, :cod_func, :num_qtd_saida, :data_saida)";
 				
 			$stmt = $this->db->prepare($sql);
 		
-			$stmt->bindparam(":cod_atendimento", $cod_atendimento);
-			$stmt->bindparam(":cod_produto", $cod_produto);
-			$stmt->bindparam(":cod_status", $cod_status);
-			$stmt->bindparam(":cod_func", $cod_func);
-			$stmt->bindparam(":num_qtd_saida", $num_qtd_saida);
-			$stmt->bindparam(":data_saida", $data_saida);
+			$stmt->bindparam(":cod_atendimento", $cod_atendimento, PDO::PARAM_INT);
+			$stmt->bindparam(":cod_produto", $cod_produto, PDO::PARAM_INT);
+			$stmt->bindparam(":cod_status", $cod_status, PDO::PARAM_INT);
+			$stmt->bindparam(":cod_func", $cod_func, PDO::PARAM_INT);
+			$stmt->bindparam(":num_qtd_saida", $num_qtd_saida, PDO::PARAM_INT);
+			$stmt->bindparam(":data_saida", $data_saida, PDO::PARAM_STR);
 			
 			return $stmt->execute () ? true : false;
 		} catch ( PDOException $e ) {
@@ -58,9 +58,9 @@ class CrudRetirada {
 			$sql .= "from produto_retirado pr ";  
 			$sql .= "join situacao_produto sp on sp.cod_status=pr.cod_status "; 
 		    $sql .= "join produto p on p.cod_produto=pr.cod_produto ";
-			$sql .= "where cod_atendimento = 2122";
+			$sql .= "where cod_atendimento = :codAtendimento";
 			$sth = $this->db->prepare($sql);
-			$sth->bindValue(':codAtendimento', $cod);
+			$sth->bindValue(':codAtendimento', $cod, PDO::PARAM_INT);
 			$sth->execute();
 				
 			return $sth->fetchAll(PDO::FETCH_ASSOC);

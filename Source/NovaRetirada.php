@@ -1,24 +1,26 @@
 <?php
+session_start();
 ob_start ();
 
 $lista=null;
 require_once 'classes/CrudSituacao.php';
-
+require_once 'classes/CrudProduto.php';
+require_once 'classes/CrudRetirada.php';
+require_once 'classes/Util.php';
+$u = new Util ();
+$retirada = new CrudRetirada ();
+$produto = new CrudProduto();
 $situacao = new CrudSituacao();
+$paciente = null;
 
-
-if(isset($_GET['n_atendimento'])){
-	require_once 'classes/CrudProduto.php';
-	require_once 'classes/CrudRetirada.php';
-	require_once 'classes/Util.php';
-	$u = new Util ();
-	$crud = new CrudRetirada ();
-	$produto = new CrudProduto();
-	$lista = $crud->getByPaciente($_GET['n_atendimento']);
+if($_SERVER ['REQUEST_METHOD'] == 'GET'){
+	$lista = $retirada->getByPaciente($_GET['n_atendimento']);
+	$paciente = $_GET['n_atendimento'];
 }
 
 if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
-	if ($crud->insert($_GET['n_atendimento'], $_POST['cod_produto'], $_POST['cod_status'], $_SESSION['user_session']['Y-m-d'], $_POST['qtd'], data('Y-m-d'))) {
+	$data_atual = date("Y-m-d");
+	if ($retirada->insert($_POST['paciente'], $_POST['cod_produto'], $_POST['cod_status'], $_SESSION['user_session']['cod_func'], $_POST['qtd'], $data_atual)) {
 		$u->alerta ( "Retidada de medicamentos gravada com sucesso!" );
 	} else {
 		$u->alerta ( "Erro ao tentar gravar Retidada de medicamentos!" );
@@ -29,7 +31,6 @@ if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
 <div class="panel panel-default">
 	<div class="panel-heading">Retirar de Medicamento</div>
 	<div class="panel-body">
-
 		<div class="row">
 			<div class="col-md-12">
 				<form method="get" class="form-horizontal">
@@ -46,16 +47,18 @@ if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
 								<?php } ?>
 							</div>
 						<div class="col-md-3">
-							<button class="btn btn-default">Pesquisar</button>
+							<button type="submit" class="btn btn-default">Pesquisar</button>
 						</div>
 					</div>
 				</form>
 			</div>
 		</div>
+		<?php if(isset($_GET['n_atendimento'])){ ?>
 		<h3>Produto</h3>
 		<div class="row">
 			<div class="col-md-12">
 				<form method="post" class="form-horizontal">
+					<input type="hidden" value="<?php echo $paciente ?>" name="paciente">
 					<div class="col-md-4">
 						<div class="form-group">
 							<label class="col-sm-5 control-label">Cod. do Produto: </label>
@@ -76,21 +79,22 @@ if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Status:</label>
 							<div class="col-sm-8">
-								<select class="form-control" name="statis" id="status">
-								<option>Selecione</option>
-								<?php 
-								$situacao->comboSituacao();
-								?>
+								<select class="form-control" name="cod_status" id="status">
+									<option>Selecione</option>
+									<?php 
+									$situacao->comboSituacao();
+									?>
 								</select>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-4">
-						<button class="btn btn-primary" type="submit">Salvar</button>
+						<button class="btn btn-primary" type="submit" name="salvar_produto">Salvar</button>
 					</div>
 				</form>
 			</div>
 		</div>
+		<?php } ?>
 		<?php if($lista != null){ ?>
 		<div class="row">
 			<div class="col-md-12">
