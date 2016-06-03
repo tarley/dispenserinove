@@ -2,7 +2,7 @@
 session_start();
 ob_start ();
 
-$lista=null;
+
 require_once 'classes/CrudSituacao.php';
 require_once 'classes/CrudProduto.php';
 require_once 'classes/CrudRetirada.php';
@@ -12,7 +12,7 @@ $retirada = new CrudRetirada ();
 $produto = new CrudProduto();
 $situacao = new CrudSituacao();
 $paciente = null;
-
+$lista=null;
 if($_SERVER ['REQUEST_METHOD'] == 'GET'){
 	$lista = $retirada->getByPaciente($_GET['n_atendimento']);
 	$paciente = $_GET['n_atendimento'];
@@ -94,7 +94,7 @@ if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
 				</form>
 			</div>
 		</div>
-		<?php } ?>
+		
 		<?php if($lista != null){ ?>
 		<div class="row">
 			<div class="col-md-12">
@@ -118,6 +118,7 @@ if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
 				</table>
 			</div>
 		</div>
+		<?php } ?>
 		<?php } ?>
 	</div>
 </div>
