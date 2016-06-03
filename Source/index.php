@@ -1,4 +1,5 @@
 <?php
+session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	require_once 'classes/CrudUsuario.php';
 	require_once 'classes/Util.php';

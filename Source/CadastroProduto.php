@@ -6,10 +6,16 @@
 		require_once 'classes/Util.php';
 		$u = new Util();
 		$crud = new CrudProduto();
-		if($crud->insert($_POST["Codigo"], $_POST["Descricao"])){
-			$u->alerta("Produto gravado com sucesso!");
-		}else{
-			$u->alerta("Erro ao tentar gravar produto!");
+		
+		if($crud->produtoExiste($_POST['codigo'])){
+			if($crud->insert($_POST["codigo"], $_POST["descricao"])){
+				$u->alerta("Produto gravado com sucesso!");
+			}else{
+				$u->alerta("Erro ao tentar gravar produto!");
+			}
+		}
+		else{
+			$u->alerta("Produto já está cadastrado");
 		}
 	}
 ?>
@@ -23,13 +29,13 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label">C&oacute;digo do Produto</label>
 						<div class="col-sm-3">
-							<input required="required" type="number" class="form-control" name="Codigo" id="codigo" />
+							<input required="required" type="number" class="form-control" name="codigo" id="codigo" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label">Descri&ccedil;&atilde;o do Produto</label>
 						<div class="col-sm-3">
-							<input required="required" type="text" class="form-control" name="Descricao" id="descricao" />
+							<input required="required" type="text" class="form-control" name="descricao" id="descricao" />
 						</div>
 					</div>
 					<div class="col-md-12 col-sm-offset-1">
@@ -46,6 +52,6 @@
 <?php
     $pagemaincontent = ob_get_contents();
     ob_end_clean();
-    $pagetitle = "Cadastro de produto"; // NOME DESSA P�GINA
+    $pagetitle = "Cadastro de produto"; // NOME DESSA P�GINA
     include("masterpage.php");// Caminho da "masterpage.php"
 ?>

@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once 'BDConnection.php';
 require_once 'Logger.php';
 

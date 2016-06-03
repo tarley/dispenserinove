@@ -49,7 +49,7 @@ ob_start ();
 										<div class="form-group">
 											<label class="col-sm-3 control-label">Quantidade desperdi&ccedil;ada</label>
 											<div class="col-sm-9">
-												<input required="true" type="number" class="form-control" placeholder="Quantidade" name="quantidade" id="quantidade">
+												<input required="true" type="number" class="form-control" placeholder="Quantidade" name="quantidade" id="quantidade" min="1">
 											</div>
 										</div>
 												
