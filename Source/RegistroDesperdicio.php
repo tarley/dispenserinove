@@ -6,7 +6,7 @@ ob_start ();
 		require_once 'classes/Util.php';
 		$u = new Util();
 		$crud = new CrudDesperdicio();
-		if($crud->desperdicio($_POST["codretorno"],$_POST["codretirada"], $_POST["data"], $_POST["quantidade"], $_POST["motivo"])){
+		if($crud->desperdicio($_POST["codretirada"], $_POST["data"], $_POST["quantidade"], $_POST["motivo"])){
 			$u->alerta("Desperdício registrado com sucesso!");
 		}else{
 			$u->alerta("Erro ao tentar registrar desperdício!");
