@@ -32,13 +32,14 @@ ob_start ();
 							<form method="post" class="form-horizontal">
 								<div class="row">
 									<div class="col-md-6">
+										<!-- Codigo autoincrement
 										<div class="form-group">
 											<label class="col-sm-3 control-label">C&oacute;digo de retorno</label>
 											<div class="col-sm-9">
 												<input required="true" type="number" class="form-control" placeholder="C&oacute;digo do retorno" name="codretorno" id="codretorno">
 											</div>
 										</div>
-												
+										-->		
 										<div class="form-group">
 											<label class="col-sm-3 control-label">C&oacute;digo de retirada do produto</label>
 											<div class="col-sm-9">
