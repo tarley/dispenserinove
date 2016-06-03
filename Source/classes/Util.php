@@ -1,7 +1,7 @@
 <?php
 class Util {
 	
-	function alerta($mensagem) {
+	public function alerta($mensagem) {
 		echo "<script>alert('".$mensagem."');</script>";
 	}
 }

@@ -27,6 +27,20 @@ class CrudProduto {
 		}
 	}
 	
+	public function getAll(){
+		try {
+			$sql = "select p.cod_produto, p.des_produto ";
+			$sql .= "from produto p ";
+			$sth = $this->db->prepare($sql);
+			$sth->execute();
+		
+			return $sth->fetchAll(PDO::FETCH_ASSOC);
+		}
+		catch ( PDOException $e ) {
+			return null;
+		}
+	}
+	
 	public function produtoExiste($cod){
 		try
 		{

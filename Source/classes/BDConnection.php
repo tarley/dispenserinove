@@ -1,15 +1,15 @@
 <?php
-/*
+
 define ( 'HOST', '127.0.0.1' );
 define ( 'DBNAME', 'dispenserinove' );
 define ( 'USER', 'root' );
 define ( 'PASSWORD', '' );
-*/
+/*
 define ( 'HOST', 'ns702.hostgator.com.br' );
 define ( 'DBNAME', 'tarley_dispenser' );
 define ( 'USER', 'tarley_dispenser' );
 define ( 'PASSWORD', 'Newton@2016' );
-
+*/
 define ( 'CHARSET', 'utf8' );
 define ( 'CHAVE', 'DispenserInoveNewtonPaiva2016' );
 

@@ -2,6 +2,10 @@
 ob_start ();
 
 $lista=null;
+require_once 'classes/CrudSituacao.php';
+
+$situacao = new CrudSituacao();
+
 
 if(isset($_GET['n_atendimento'])){
 	require_once 'classes/CrudProduto.php';
@@ -68,12 +72,15 @@ if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
 							</div>
 						</div>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<div class="form-group">
-							<label class="col-sm-5 control-label">Status:</label>
-							<div class="col-sm-7">
+							<label class="col-sm-3 control-label">Status:</label>
+							<div class="col-sm-8">
 								<select class="form-control" name="statis" id="status">
-									<option>Tste</option>
+								<option>Selecione</option>
+								<?php 
+								$situacao->comboSituacao();
+								?>
 								</select>
 							</div>
 						</div>

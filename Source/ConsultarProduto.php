@@ -1,17 +1,14 @@
 <?php
 ob_start ();
+require_once 'classes/CrudProduto.php';
+$crud = new CrudProduto($conn);
 
-$lista = null;
+$lista = $crud->getAll();
 
-	if (isset ($_GET ["codigodoproduto"])){
-		require_once 'classes/CrudProduto.php';
-		$codProduto = $_GET["codigodoproduto"];
-		$conn = new BDConnection();
-		$conn->getConnection();
-		
-		$crud = new CrudProduto($conn);
-		$lista = $crud->getByFilter($codProduto);
-	}
+if (isset ($_GET ["codigodoproduto"])){
+	$codProduto = $_GET["codigodoproduto"];
+	$lista = $crud->getByFilter($codProduto);
+}
 ?>
 
 <div class="panel panel-default">
@@ -29,13 +26,16 @@ $lista = null;
 						<label class="col-sm-0 control-label"></label>
 						<div class="col-sm-3">
 						<button class="btn btn-default" type="submit">Pesquisar</button>
+						<a href="ConsultarProduto.php" class="btn btn-default" >Limpar</a>
 						</div>
 					</div>
 
 					<div class="form-group"></div>
 
 				</div>
-				<div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
 					<?php if($lista != null){ ?>
 					<table class="table table-bordered">
 						<thead>
@@ -52,11 +52,11 @@ $lista = null;
 							</tr>
 							<?php }?>
 						</tbody>
-
 					</table>
 					<?php } ?>
 				</div>
 			</div>
+			
 		</form>
 	</div>
 </div>
