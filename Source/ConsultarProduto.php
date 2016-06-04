@@ -21,7 +21,7 @@ if (isset ($_GET ["codigodoproduto"])){
 						<label class="col-sm-2 control-label">C&oacute;digo do Produto</label>
 						<div class="col-sm-3">
 							
-							<input required="true" type="number" name="codigodoproduto" class="form-control"	placeholder="C&oacute;digo do Produto">				
+							<input required="true" type="number" name="codigodoproduto" class="form-control"	placeholder="C&oacute;digo do Produto" mim="1">				
 						</div>
 						<label class="col-sm-0 control-label"></label>
 						<div class="col-sm-3">
