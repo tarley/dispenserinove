@@ -2,16 +2,26 @@
 ob_start ();
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		
 		require_once 'classes/CrudDesperdicio.php';
 		require_once 'classes/Util.php';
 		$u = new Util();
 		$crud = new CrudDesperdicio();
-		if($crud->desperdicio($_POST["codretirada"], $_POST["data"], $_POST["quantidade"], $_POST["motivo"])){
+		
+		if($crud->insertDesp($_POST["codretirada"], $_POST["data"], $_POST["quantidade"], $_POST["motivo"])){
 			$u->alerta("Desperdício registrado com sucesso!");
 		}else{
 			$u->alerta("Erro ao tentar registrar desperdício!");
 		}
 	}
+	
+		/*$codretirada $_POST["codretirada"];
+		$data = $_POST["data"];
+		$quantidade = $_POST["quantidade"];
+		$motivo = $_POST["motivo"];
+		$sql = "INSERT INTO historico_retorno (cod_retirada,dta_retorno,num_quant_retorno,des_motivo) VALUES (:codretirada,:data,:quantidade,:motivo) ";;
+		$conn->query($sql);
+		$conn = null;*/
 ?>
 
 
@@ -43,7 +53,7 @@ ob_start ();
 										<div class="form-group">
 											<label class="col-sm-3 control-label">C&oacute;digo de retirada do produto</label>
 											<div class="col-sm-9">
-												<input required="true" type="number" class="form-control" placeholder="C&oacute;digo de retirada" name="codretirada" id="codretirada">
+												<input required="true" type="number" class="form-control" placeholder="C&oacute;digo de retirada" name="codretirada" id="codretirada" min="1">
 											</div>
 										</div>
 												
