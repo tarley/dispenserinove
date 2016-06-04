@@ -33,7 +33,7 @@ if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
 	<div class="panel-body">
 		<div class="row">
 			<div class="col-md-12">
-				<form method="get" class="form-horizontal">
+				<form method="get" class="form-horizontal" id = "frmNovaRetirada">
 					<div class="form-group">
 						<label class="col-sm-2 control-label">N&ordm; Paciente</label>
 						<div class="col-sm-3">
@@ -123,11 +123,28 @@ if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
 	</div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){
-   
+$("#frmNovaRetirada").submit(function( event ) {
+	event.preventDefault();
+	var erros = "";
+	
+	if($("#cod_produto").val() == ""){
+		erros += "<li>Código do produto &eacute; obrigat&oacute;rio</li>"; 
+	}
+	if( $("#qtd").val() == "" ){
+		erros += "<li>Quantidade &eacute; obrigat&oacute;rio</li>";
+	}
+	if($("#motivo").val() == ""){
+		erros += "<li>Status &eacute; obrigat&oacute;rio</li>"; 
+	}
+	
+	
+	if( erros != "" ){
+		$( ".erros" ).text("");
+		$( ".erros" ).prepend("<ul>"+erros+"</ul>")
+	}else{
+		$("#frmNovaRetirada").submit()
+	}
 });
-
-
 </script>
 
 <?php
