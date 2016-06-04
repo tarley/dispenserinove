@@ -55,7 +55,11 @@ $("#frmPaciente").submit(function( event ) {
 	var erros = "";
 	
 	if($("#codigo").val() == ""){
-		erros += "<li>Codigo &eacute; obrigat&oacute;rio</li>"; 
+		erros += "<li>Codigo do Paciente &eacute; obrigat&oacute;rio</li>"; 
+	}
+
+	if($("#nome").val() == ""){
+		erros += "<li>Nome do Paciente &eacute; obrigat&oacute;rio</li>"; 
 	}
 
 	if( erros != "" ){
