@@ -49,6 +49,27 @@
 	</div>
 </div>
 
+<script type="text/javascript">
+$("#frmProduto").submit(function( event ) {
+	event.preventDefault();
+	var erros = "";
+	
+	if($("#codigo").val() == ""){
+		erros += "<li>Código do Produto &eacute; obrigat&oacute;rio</li>"; 
+	}
+	if( $("#descricao").val() == "" ){
+		erros += "<li>Descrição do Produto &eacute; obrigat&oacute;rio</li>";
+	}
+	
+	if( erros != "" ){
+		$( ".erros" ).text("");
+		$( ".erros" ).prepend("<ul>"+erros+"</ul>")
+	}else{
+		$("#frmProduto").submit()
+	}
+});
+</script>
+
 <?php
     $pagemaincontent = ob_get_contents();
     ob_end_clean();
