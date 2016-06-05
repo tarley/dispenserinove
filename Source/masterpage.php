@@ -69,6 +69,7 @@ if(!$usuario->is_loggedin()){
 				<li><a href="NovaRetirada.php"><i class="fa fa-plus-square-o"></i> Nova Retirada</a></li>
 				<li><a href="#"><i class="fa fa-search"></i> Consultar</a>
 					<ul>
+						<li><a href="ConsultarPaciente.php">Paciente</a></li>
 						<li><a href="ConsultarRetirada.php">Retirada</a></li>
 						<li><a href="ConsultarProduto.php">Produto</a></li>
 					</ul></li>

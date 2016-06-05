@@ -27,6 +27,36 @@ class CrudAtentimento {
 		}
 	}
 	
+	public function getByFilter($cod){
+		try {
+			$sql = "select cod_atendimento, nom_paciente ";
+			$sql .= "from registro_atendimento ";
+			$sql .= "where cod_atendimento= :cod" ;
+			$sth = $this->db->prepare($sql);
+			$sth->bindValue(':cod', $cod);
+			$sth->execute();
+	
+			return $sth->fetchAll(PDO::FETCH_ASSOC);
+		}
+		catch ( PDOException $e ) {
+			return null;
+		}
+	}
+	
+	public function getAll(){
+		try {
+			$sql = "select cod_atendimento, nom_paciente ";
+			$sql .= "from registro_atendimento ";
+			$sth = $this->db->prepare($sql);
+			$sth->execute();
+	
+			return $sth->fetchAll(PDO::FETCH_ASSOC);
+		}
+		catch ( PDOException $e ) {
+			return null;
+		}
+	}
+	
 	public function pacienteExiste($cod){
 		try
 		{
