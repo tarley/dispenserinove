@@ -86,6 +86,57 @@ class Usuario {
 		}
 	}
 	
+	public function getAll(){
+		try {
+		$sql = "select cod_func, nom_func, des_turno, nom_usuario, dta_cadastro, admin ";
+		$sql .= "from funcionario_farmacia ";
+		$sth = $this->db->prepare($sql);
+		$sth->execute();
+		return $sth->fetchAll(PDO::FETCH_ASSOC);
+		}
+		catch ( PDOException $e ) {
+			return null;
+		}
+		
+	}
+	
+	public function getByFilter($nome, $ativo){
+		try {
+			$sql = "select cod_func, nom_func, des_turno, nom_usuario, dta_cadastro, admin ";
+			$sql .= "from funcionario_farmacia ";
+			$sql .= "where nom_func like :nome and ativo=:ativo" ;
+			$sth = $this->db->prepare($sql);
+			$sth->bindValue(':nome', $nome.'%');
+			$sth->bindValue(':ativo', $ativo);
+			$sth->execute();
+	
+			return $sth->fetchAll(PDO::FETCH_ASSOC);
+		}
+		catch ( PDOException $e ) {
+			return null;
+		}
+	}
+	
+	public function deleteByID($cod){
+		try {
+			$sql = "UPDATE funcionario_farmacia ";
+			$sql .= "SET ativo = 0 ";
+			$sql .= "WHERE COD_FUNC = :cod";
+			$stmt = $this->db->prepare($sql);
+				
+			$stmt->bindparam(":cod", $cod);				
+				
+			return $stmt->execute () ? true : false;
+		} catch ( PDOException $e ) {
+			return false;
+		}
+	}
+	
+	public function is_admin()
+	{		
+		return $_SESSION[user_session][admin] == 1 ? true : false;
+	}
+	
 	public function is_loggedin()
 	{
 		return isset($_SESSION['user_session']) ? true : false;

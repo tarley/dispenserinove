@@ -61,9 +61,6 @@ if (isset ($_GET ["codigodoproduto"])){
 	</div>
 </div>
 
-
-
-</script>
 <?php
 $pagemaincontent = ob_get_contents ();
 ob_end_clean ();

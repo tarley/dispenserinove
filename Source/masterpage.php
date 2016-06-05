@@ -72,14 +72,19 @@ if(!$usuario->is_loggedin()){
 						<li><a href="ConsultarPaciente.php">Paciente</a></li>
 						<li><a href="ConsultarRetirada.php">Retirada</a></li>
 						<li><a href="ConsultarProduto.php">Produto</a></li>
-					</ul></li>
+						<li><a href="RegistroDesperdicio.php">Desperd&iacute;cio</a></li>
+						<?php if($usuario->is_admin()){ ?>
+						<li><a href="ConsultarUsuario.php">Usu&aacute;rio</a></li>
+						<?php } ?>
+					</ul>
+				</li>
 				</li>
 				<li><a href="#"><i class="fa fa-plus"></i> Cadastrar</a>
 					<ul>
 						<li><a href="CadastroPaciente.php">Paciente</a></li>
 						<li><a href="CadastroProduto.php">Produto</a></li>
 						<li><a href="RegistroDesperdicio.php">Desperd&iacute;cio</a></li>
-						<?php if($_SESSION[user_session][admin] == 1){ ?>
+						<?php if($usuario->is_admin()){ ?>
 						<li><a href="CadastroUsuario.php">Usu&aacute;rio</a></li>
 						<?php } ?>
 					</ul>
