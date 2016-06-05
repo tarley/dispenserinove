@@ -53,7 +53,7 @@ if(!$usuario->is_loggedin()){
 			class="img-responsive" alt=""></a> <span class="menu-btn"><i
 			class="fa fa-bars"></i></span>
 		<ul class="ts-profile-nav">
-			<li class="ts-account"><a href="#"> <?php echo $_SESSION[user_session][NOM_FUNC]; ?> <i class="fa fa-angle-down hidden-side"></i></a>
+			<li class="ts-account"><a href="#"> <?php echo $_SESSION[user_session][nom_func]; ?> <i class="fa fa-angle-down hidden-side"></i></a>
 				<ul>
 					<li><a href="#">Minha Conta</a></li>
 					<li><a href="sair.php">Sair</a></li>
@@ -79,14 +79,14 @@ if(!$usuario->is_loggedin()){
 						<li><a href="CadastroPaciente.php">Paciente</a></li>
 						<li><a href="CadastroProduto.php">Produto</a></li>
 						<li><a href="RegistroDesperdicio.php">Desperd&iacute;cio</a></li>
-						<?php if($_SESSION[user_session][ADMIN] == 1){ ?>
+						<?php if($_SESSION[user_session][admin] == 1){ ?>
 						<li><a href="CadastroUsuario.php">Usu&aacute;rio</a></li>
 						<?php } ?>
 					</ul>
 				</li>
 				
 				<ul class="ts-profile-nav">
-					<li class="ts-account"><a href="#"><?php echo $_SESSION[user_session][NOM_FUNC]; ?><i
+					<li class="ts-account"><a href="#"><?php echo $_SESSION[user_session][nom_func]; ?><i
 							class="fa fa-angle-down hidden-side"></i></a>
 						<ul>
 							<li><a href="#">Minha Conta</a></li>

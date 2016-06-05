@@ -12,7 +12,7 @@ if (isset ($_GET ["codigodopaciente"])){
 ?>
 
 <div class="panel panel-default">
-	<div class="panel-heading">Consulta de Produtos</div>
+	<div class="panel-heading">Consulta de Paciente</div>
 	<div class="panel-body">
 		<form method="get" class="form-horizontal">
 			<div class="row">

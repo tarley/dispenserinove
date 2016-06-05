@@ -2,7 +2,6 @@
 session_start();
 ob_start ();
 
-
 require_once 'classes/CrudSituacao.php';
 require_once 'classes/CrudProduto.php';
 require_once 'classes/CrudRetirada.php';
