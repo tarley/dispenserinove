@@ -14,8 +14,9 @@ if (! $crud->is_admin ()) {
 
 $lista = $crud->getAll ();
 
-if (isset ( $_GET ["nome"] )) {
-	$nome = $_GET ["nome"];
+if (isset ( $_GET ['nome'] ) || isset ( $_GET ['status'] )) {
+	$nome = $_GET ['nome'];
+	$status = $_GET['status'];
 	$lista = $crud->getByFilter ( $nome, $status );
 }
 ?>
@@ -25,7 +26,7 @@ if (isset ( $_GET ["nome"] )) {
 	<div class="panel-body">
 		<div class="row">
 			<div class="col-md-12">
-				<form class="form-inline" id="frmUsuario">
+				<form class="form-inline" id="frmUsuario" method="get" action="">
 					<div class="form-group">
 						<label for="nomw">Name</label> <input type="text"
 							class="form-control" id="nome">
@@ -37,7 +38,7 @@ if (isset ( $_GET ["nome"] )) {
 							<option value="0">Inativo</option>
 						</select>
 					</div>
-					<button class="btn btn-default" type="submit">Pesquisar</button>
+					<button class="btn btn-default" name="pesquisar" type="submit">Pesquisar</button>
 					<a href="ConsultarUsuario.php" class="btn btn-default">Limpar</a>
 				</form>
 			</div>
@@ -55,6 +56,8 @@ if (isset ( $_GET ["nome"] )) {
 							<th>Nome de Usuário</th>
 							<th>Data Cadastro</th>
 							<th>Administrador</th>
+							<th>Status</th>
+							<th></th>
 							<th></th>
 							<th></th>
 						</tr>
@@ -68,10 +71,17 @@ if (isset ( $_GET ["nome"] )) {
 							<td><?php echo $value["nom_usuario"]; ?></td>
 							<td><?php echo $value["dta_cadastro"]; ?></td>
 							<td><?php echo $value["admin"]==1? "Sim" : "Não"; ?></td>
-							<td class="text-center"><a
-								href="<?php echo "Remove.php?id=$value[cod_func]&tipo=usuario"; ?>">
+							<td><?php echo $value["ativo"]==1? "Ativo" : "Inativo"; ?></td>
+							<td class="text-center">
+								<a href="<?php echo "Remover.php?codigo=".$value["cod_func"]."&tipo=usuario"; ?>">
 									<i class="fa fa-remove"></i>
-							</a></td>
+								</a>
+							</td>
+							<td class="text-center">
+								<a href="<?php echo "Ativar.php?codigo=".$value["cod_func"]."&tipo=usuario"; ?>">
+									<i class="fa fa-check"></i>
+								</a>
+							</td>
 							<td class="text-center"><a href=""> <i class="fa fa-pencil"></i>
 							</a></td>
 						</tr>
@@ -83,24 +93,6 @@ if (isset ( $_GET ["nome"] )) {
 		</div>
 	</div>
 </div>
-
-<script>
-$("#frmUsuario").submit(function (event){
-	event.preventDefault();
-	var erros = "";
-	
-	if($("#nome").val() == ""){
-		erros += "<li>Nome &eacute; obrigat&oacute;rio</li>"; 
-	}
-	if( erros != "" ){
-		$( ".erros" ).text("");
-		$( ".erros" ).prepend("<ul>"+erros+"</ul>")
-	}else{
-		$("#frmUsuario").submit()
-	}
-});
-</script>
-
 
 <?php
 $pagemaincontent = ob_get_contents ();

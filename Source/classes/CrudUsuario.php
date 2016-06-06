@@ -66,7 +66,7 @@ class Usuario {
 		{
 			$senha = md5($senha+CHAVE);
 			Logger("Usuario: " . $usuario . " Senha: " . $senha . " DB" . isset($this->db));
-			$stmt = $this->db->prepare("SELECT cod_func,nom_func,des_turno,cod_senha,nom_usuario,dta_cadastro,admin FROM funcionario_farmacia WHERE NOM_USUARIO=:usuario AND COD_SENHA=:senha LIMIT 1");
+			$stmt = $this->db->prepare("SELECT cod_func,nom_func,des_turno,cod_senha,nom_usuario,dta_cadastro,admin FROM funcionario_farmacia WHERE nom_usuario=:usuario AND cod_senha=:senha and ativo=1 LIMIT 1");
 			$stmt->execute(array(':usuario'=>$usuario, ':senha'=>$senha));
 			$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
 			if($stmt->rowCount() > 0)
@@ -88,7 +88,7 @@ class Usuario {
 	
 	public function getAll(){
 		try {
-		$sql = "select cod_func, nom_func, des_turno, nom_usuario, dta_cadastro, admin ";
+		$sql = "select cod_func, nom_func, des_turno, nom_usuario, dta_cadastro, admin, ativo ";
 		$sql .= "from funcionario_farmacia ";
 		$sth = $this->db->prepare($sql);
 		$sth->execute();
@@ -102,11 +102,11 @@ class Usuario {
 	
 	public function getByFilter($nome, $ativo){
 		try {
-			$sql = "select cod_func, nom_func, des_turno, nom_usuario, dta_cadastro, admin ";
+			$sql = "select cod_func, nom_func, des_turno, nom_usuario, dta_cadastro, admin, ativo ";
 			$sql .= "from funcionario_farmacia ";
 			$sql .= "where nom_func like :nome and ativo=:ativo" ;
 			$sth = $this->db->prepare($sql);
-			$sth->bindValue(':nome', $nome.'%');
+			$sth->bindValue(':nome', '%'.$nome.'%');
 			$sth->bindValue(':ativo', $ativo);
 			$sth->execute();
 	
@@ -117,7 +117,7 @@ class Usuario {
 		}
 	}
 	
-	public function deleteByID($cod){
+	public function desativarByID($cod){
 		try {
 			$sql = "UPDATE funcionario_farmacia ";
 			$sql .= "SET ativo = 0 ";
@@ -131,7 +131,20 @@ class Usuario {
 			return false;
 		}
 	}
+	public function ativarByID($cod){
+		try {
+			$sql = "UPDATE funcionario_farmacia ";
+			$sql .= "SET ativo = 1 ";
+			$sql .= "WHERE COD_FUNC = :cod";
+			$stmt = $this->db->prepare($sql);
 	
+			$stmt->bindparam(":cod", $cod);
+	
+			return $stmt->execute () ? true : false;
+		} catch ( PDOException $e ) {
+			return false;
+		}
+	}
 	public function is_admin()
 	{		
 		return $_SESSION[user_session][admin] == 1 ? true : false;
@@ -149,8 +162,8 @@ class Usuario {
 	
 	public function logout()
 	{
-		session_destroy();
 		unset($_SESSION['user_session']);
+		session_destroy();
 		return true;
 	}
 }

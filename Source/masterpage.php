@@ -49,11 +49,11 @@ if(!$usuario->is_loggedin()){
 
 <body>
 	<div class="brand clearfix">
-		<a href="index.html" class="logo"><img src="img/logo.jpg"
-			class="img-responsive" alt=""></a> <span class="menu-btn"><i
+		<a href="index.html" class="logo" style="padding: 3px;"><img src="img/logo.png"
+			class="img-responsive" alt="" style="width: 99%; height: auto; margin: 0; padding: 0;"></a> <span class="menu-btn"><i
 			class="fa fa-bars"></i></span>
 		<ul class="ts-profile-nav">
-			<li class="ts-account"><a href="#"> <?php echo $_SESSION[user_session][nom_func]; ?> <i class="fa fa-angle-down hidden-side"></i></a>
+			<li class="ts-account"><a href="#"> <?php echo $_SESSION['user_session']['nom_func']; ?> <i class="fa fa-angle-down hidden-side"></i></a>
 				<ul>
 					<li><a href="#">Minha Conta</a></li>
 					<li><a href="sair.php">Sair</a></li>
