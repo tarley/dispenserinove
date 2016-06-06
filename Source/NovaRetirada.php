@@ -1,28 +1,43 @@
 <?php
-session_start();
+session_start ();
 ob_start ();
 
 require_once 'classes/CrudSituacao.php';
 require_once 'classes/CrudProduto.php';
 require_once 'classes/CrudRetirada.php';
+require_once 'classes/CrudAtendimento.php';
 require_once 'classes/Util.php';
 $u = new Util ();
 $retirada = new CrudRetirada ();
-$produto = new CrudProduto();
-$situacao = new CrudSituacao();
+$produto = new CrudProduto ();
+$situacao = new CrudSituacao ();
+$atendimento = new CrudAtentimento ();
+
 $paciente = null;
-$lista=null;
-if($_SERVER ['REQUEST_METHOD'] == 'GET'){
-	$lista = $retirada->getByPaciente($_GET['n_atendimento']);
-	$paciente = $_GET['n_atendimento'];
+$lista = null;
+
+if (isset ( $_GET ['n_atendimento'] )) {
+	
+	if ($atendimento->pacienteExiste ( $_GET ['n_atendimento'] )) {
+		$lista = $retirada->getByPaciente ( $_GET ['n_atendimento'] );
+		$paciente = $_GET ['n_atendimento'];
+	} else {
+		$u->Redirect ( 'NovaRetirada.php', false );
+	}
 }
 
 if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
-	$data_atual = date("Y-m-d");
-	if ($retirada->insert($_POST['paciente'], $_POST['cod_produto'], $_POST['cod_status'], $_SESSION['user_session']['cod_func'], $_POST['qtd'], $data_atual)) {
-		$u->alerta ( "Retidada de medicamentos gravada com sucesso!" );
-	} else {
-		$u->alerta ( "Erro ao tentar gravar Retidada de medicamentos!" );
+	if ( $retirada->validaRetirada ( $_POST ['paciente'], $_POST ['cod_produto'] )) {
+		if ($retirada->insert ( $_POST ['paciente'], $_POST ['cod_produto'], $_POST ['cod_status'], $_SESSION ['user_session'] ['cod_func'], $_POST ['qtd'])) {
+			$u->alerta ( "Retidada de medicamentos gravada com sucesso!" );
+		} else {
+			$u->alerta ( "Erro ao tentar gravar Retidada de medicamentos!" );
+			echo "<script>location.reload();</script>";
+		}
+	}
+	else{
+		$u->alerta ( "Paciente já possui esse produto vinculado!" );
+		echo "<script>location.reload();</script>";
 	}
 }
 ?>
@@ -32,7 +47,7 @@ if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
 	<div class="panel-body">
 		<div class="row">
 			<div class="col-md-12">
-				<form method="get" class="form-horizontal" id = "frmNovaRetirada">
+				<form method="get" class="form-horizontal" id="frmNovaRetirada">
 					<div class="form-group">
 						<label class="col-sm-2 control-label">N&ordm; Paciente</label>
 						<div class="col-sm-3">
@@ -52,12 +67,12 @@ if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
 				</form>
 			</div>
 		</div>
-		<?php if(isset($_GET['n_atendimento'])){ ?>
+
 		<h3>Produto</h3>
 		<div class="row">
 			<div class="col-md-12">
 				<form method="post" class="form-horizontal">
-					<input type="hidden" value="<?php echo $paciente ?>" name="paciente">
+					<input type="hidden" value="<?php echo $paciente ?>" name="paciente" style="display: none;">
 					<div class="col-md-4">
 						<div class="form-group">
 							<label class="col-sm-5 control-label">Cod. do Produto: </label>
@@ -80,20 +95,21 @@ if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
 							<div class="col-sm-8">
 								<select class="form-control" name="cod_status" id="status">
 									<option>Selecione</option>
-									<?php 
-									$situacao->comboSituacao();
+									<?php
+									$situacao->comboSituacao ();
 									?>
 								</select>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-4">
-						<button class="btn btn-primary" type="submit" name="salvar_produto">Salvar</button>
+						<button class="btn btn-primary" type="submit"
+							name="salvar_produto">Salvar</button>
 					</div>
 				</form>
 			</div>
 		</div>
-		
+		<br />
 		<?php if($lista != null){ ?>
 		<div class="row">
 			<div class="col-md-12">
@@ -104,20 +120,21 @@ if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
 						<th>Produto</th>
 						<th>Qtd</th>
 						<th>Data Saida</th>
-					</tr>
+						<th>Status</th>
+					</tr>			
 					<?php foreach($lista as $key => $value) { ?>
 					<tr>
-						<td><?php $value['cod_retirada']; ?></td>
-						<td><?php $value['cod_produto']; ?></td>
-						<td><?php $value['des_produto']; ?></td>
-						<td><?php $value['dta_saida']; ?></td>
-						<td><?php $value['des_status']; ?></td>
+						<td><?php echo $value["cod_retirada"]; ?></td>
+						<td><?php echo $value["cod_produto"]; ?></td>
+						<td><?php echo $value["des_produto"]; ?></td>
+						<td><?php echo $value["num_quant_saida"]; ?></td>
+						<td><?php echo $value["dta_saida"]; ?></td>
+						<td><?php echo $value["des_status"]; ?></td>
 					</tr>
 					<?php } ?>
 				</table>
 			</div>
 		</div>
-		<?php } ?>
 		<?php } ?>
 	</div>
 </div>

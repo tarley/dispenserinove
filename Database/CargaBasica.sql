@@ -12,5 +12,6 @@ insert into situacao_produto (des_status) values ('Em uso');
 insert into situacao_produto (des_status) values ('Armazenado na fármacia');
 insert into situacao_produto (des_status) values ('Vencido');
 insert into situacao_produto (des_status) values ('Baixado');
+insert into situacao_produto (des_status) values ('Desperdício');
 
 

@@ -30,12 +30,12 @@ class CrudRetirada {
 		}
 	}
 	
-	public function insert($cod_atendimento, $cod_produto, $cod_status, $cod_func, $num_qtd_saida, $data_saida){
+	public function insert($cod_atendimento, $cod_produto, $cod_status, $cod_func, $num_qtd_saida){
 		try {
 			$sql .= "INSERT INTO produto_retirado ";
 			$sql .= "(cod_atendimento, cod_produto, cod_status, cod_func, num_quant_saida, dta_saida) ";
 			$sql .= "VALUES ";
-     		$sql .= "(:cod_atendimento, :cod_produto, :cod_status, :cod_func, :num_qtd_saida, :data_saida)";
+     		$sql .= "(:cod_atendimento, :cod_produto, :cod_status, :cod_func, :num_qtd_saida, current_date())";
 				
 			$stmt = $this->db->prepare($sql);
 		
@@ -44,17 +44,42 @@ class CrudRetirada {
 			$stmt->bindparam(":cod_status", $cod_status, PDO::PARAM_INT);
 			$stmt->bindparam(":cod_func", $cod_func, PDO::PARAM_INT);
 			$stmt->bindparam(":num_qtd_saida", $num_qtd_saida, PDO::PARAM_INT);
-			$stmt->bindparam(":data_saida", $data_saida, PDO::PARAM_STR);
 			
 			return $stmt->execute () ? true : false;
 		} catch ( PDOException $e ) {
 			return false;
 		}
 	}
+		
+	public function validaRetirada($cod_paciente, $cod_produto){
+		try
+		{
+			$sql = "select cod_retirada from produto_retirado ";
+			$sql .= "where cod_atendimento=:cod_paciente and cod_produto=:cod_produto ";
+			$sql .= "and cod_status<>(select cod_status from situacao_produto where des_status<>'Desperdício' limit 1) ";
+			$sql .= "and cod_status<>(select cod_status from situacao_produto where des_status<>'Baixado' limit 1)";
+			
+			$stmt = $this->db->prepare($sql);
+			$stmt->execute(array(':cod_paciente'=>$cod_paciente, ':cod_produto'=>$cod_produto));
+			$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+			if($stmt->rowCount() > 0)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+		catch(PDOException $e)
+		{
+			echo true;
+		}
+	}
 	
 	public function getByPaciente($cod){
 		try{
-			$sql = "select pr.cod_retirada, pr.cod_produto, p.des_produto, pr.num_quant_saida, dta_saida, sp.des_status"; 
+			$sql = "select pr.cod_retirada, pr.cod_produto, p.des_produto, pr.num_quant_saida, dta_saida, sp.des_status "; 
 			$sql .= "from produto_retirado pr ";  
 			$sql .= "join situacao_produto sp on sp.cod_status=pr.cod_status "; 
 		    $sql .= "join produto p on p.cod_produto=pr.cod_produto ";

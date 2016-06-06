@@ -1,7 +1,7 @@
 <?php
 require_once 'BDConnection.php';
 require_once 'Logger.php';
-
+require_once 'Util.php';
 class Usuario {
 	
 	private $db;
@@ -156,7 +156,10 @@ class Usuario {
 	
 	public function redirect($url)
 	{
-		header("Location: $url");
+		$u = new Util();
+		$u->Redirect($url, false);
+		//echo "<meta http-equiv=\"Location\" content=\"$url\">";
+		//header("Location: $url");
 	}
 	
 	public function logout()

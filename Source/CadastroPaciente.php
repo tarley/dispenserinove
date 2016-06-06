@@ -7,7 +7,7 @@
 		$u = new Util();
 		$atendimento = new CrudAtentimento();
 		
-		if($atendimento->pacienteExiste($_POST['codigo'])){
+		if(!$atendimento->pacienteExiste($_POST['codigo'])){
 			if($atendimento->insert($_POST["codigo"], $_POST["nome"])){
 				$u->alerta("Paciente gravado com sucesso!");
 			}else{

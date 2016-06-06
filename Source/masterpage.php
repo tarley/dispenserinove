@@ -110,7 +110,7 @@ if(!$usuario->is_loggedin()){
 					</div>
 				</div>
 
-				<div class="row" style="position: absolute; bottom: 0;">
+				<div class="row" style="position: relative; bottom: 0;">
 					<div class="clearfix pt pb">
 						<div class="col-md-12">
 							<em>Copyright Newton Paiva. All Right Reserved</em>
