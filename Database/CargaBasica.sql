@@ -1,6 +1,6 @@
 #### Alteração da tabela de funcionario  ####
-ALTER TABLE `dispenserinove`.`funcionario_farmacia` 
-ADD COLUMN `ativo` BIT(1) NULL DEFAULT 1 COMMENT '' AFTER `ADMIN`;
+ALTER TABLE funcionario_farmacia 
+ADD COLUMN `ativo` BIT(1) NULL DEFAULT 1 COMMENT '' AFTER `admin`;
 
 
 #### Usuario Admin da aplicação ####
