@@ -21,15 +21,14 @@ class Usuario {
 			
 			$sql = "INSERT INTO funcionario_farmacia ";
 			$sql .= "(nom_func,des_turno,cod_senha,nom_usuario,dta_cadastro,admin) ";
-			$sql .= "VALUES (:nom_func,:des_turno,:cod_senha,:nom_usuario,:dta_cadastro,:admin)";
+			$sql .= "VALUES (:nom_func,:des_turno,:cod_senha,:nom_usuario,current_date(),:admin)";
 			
 			$stmt = $this->db->prepare($sql);
-			
+			$data = date("Y-m-d");
 			$stmt->bindparam(":nom_func", $nom_func);
 			$stmt->bindparam(":des_turno", $des_turno);
 			$stmt->bindparam(":cod_senha", $senha);
 			$stmt->bindparam(":nom_usuario", $nom_usuario);
-			$stmt->bindparam(":dta_cadastro", date("Y-m-d"));
 			$stmt->bindparam(":admin", $admin);
 			
 			
