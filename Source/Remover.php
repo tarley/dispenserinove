@@ -17,21 +17,21 @@ if (! $usuario->is_loggedin ()) {
 			if ($usuario->is_admin ()) {
 				if ($usuario->desativarByID ( $_GET ['codigo'] )) {
 					$u->alerta ( "Usuário desativado com sucesso!" );
-					$usuario->redirect ( "ConsultarUsuario.php" );
+					echo "<script>window.location='ConsultarUsuario.php'</script>";
 				} else {
 					$u->alerta ( "Erro ao tentar desativar usuário!" );
-					$usuario->redirect ( "ConsultarUsuario.php" );
+					echo "<script>window.location='ConsultarUsuario.php'</script>";
 				}
 			} else {
 				$u->alerta ( "Sem acesso!" );
-				$usuario->redirect ( "ConsultarRetirada.php" );
+				echo "<script>window.location='ConsultarRetirada.php'</script>";
 			}
 			break;
 		case "x" :
 			echo "afd";
 			break;
 		default :
-			$usuario->redirect ( "ConsultarRetirada.php" );
+			echo "<script>window.location='ConsultarRetirada.php'</script>";
 			break;
 	}
 }

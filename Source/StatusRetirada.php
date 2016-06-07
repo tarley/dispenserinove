@@ -62,7 +62,7 @@ if ($lista == null) {
 						</thead>
 						</table>
 					</div>
-					<form method="post" action="">
+					<form method="post" action="" id="frmStatusRetirada">
 						<input type="hidden" value="<?php echo $cod_retirada; ?>"
 							name="cod_retirada">
 						<div class="form-group">
@@ -73,8 +73,7 @@ if ($lista == null) {
 								<?php
 								$situacao->comboSituacao ();
 								?>
-							</select>
-							<span class="erro"></span>
+							</select> <span class="erros"></span>
 							</div>
 							<button class="btn btn-primary" type="submit">Salvar</button>
 						</div>
@@ -87,27 +86,16 @@ if ($lista == null) {
 	</div>
 </div>
 <script type="text/javascript">
-$("#frmRetirada").submit(function( event ) {
-	event.preventDefault();
-	var erros = "";
-	
-	if($("#status").val() == ""){
-		erros += "<li>Selecione uma opção</li>"; 
-	}
-	if($("#status").val() == "Desperdício"){
-		window.location='RegistroDesperdicio.php'
-	}
-	if( erros != "" ){
-		$( ".erros" ).text("");
-		$( ".erros" ).prepend("<ul>"+erros+"</ul>")
-	}else{
-		$("#frmUsuario").submit()
+$( "#status" ).change(function() {
+	if($('#status :selected').text() === "Desperdício"){
+		window.location='RegistroDesperdicio.php?cod_retirada='+location.search.split('cod_retirada=')[1];
 	}
 });
+
 </script>
 <?php
 $pagemaincontent = ob_get_contents ();
 ob_end_clean ();
-$pagetitle = "Cadastro de produto"; // NOME DESSA P�GINA
+$pagetitle = "Status da Retirada"; // NOME DESSA P�GINA
 include ("masterpage.php"); // Caminho da "masterpage.php"
 ?>

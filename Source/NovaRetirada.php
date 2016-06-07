@@ -145,11 +145,7 @@ $("#frmNovaRetirada").submit(function( event ) {
 	if( $("#qtd").val() == "" ){
 		erros += "<li>Quantidade &eacute; obrigat&oacute;rio</li>";
 	}
-	if($("#motivo").val() == ""){
-		erros += "<li>Status &eacute; obrigat&oacute;rio</li>"; 
-	}
-	
-	
+		
 	if( erros != "" ){
 		$( ".erros" ).text("");
 		$( ".erros" ).prepend("<ul>"+erros+"</ul>")

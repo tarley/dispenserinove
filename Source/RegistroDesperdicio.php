@@ -1,6 +1,10 @@
 <?php
 ob_start ();
+$cod_retirada= null;
 
+if(isset( $_GET['cod_retirada'] )){
+	$cod_retirada=$_GET['cod_retirada'];
+}
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		require_once 'classes/CrudDesperdicio.php';
@@ -44,7 +48,7 @@ ob_start ();
 										<div class="form-group">
 											<label class="col-sm-3 control-label">C&oacute;digo de retirada do produto</label>
 											<div class="col-sm-9">
-												<input required="true" type="number" class="form-control" placeholder="C&oacute;digo de retirada" name="codretirada" id="codretirada" min="1">
+												<input required="true" value="<?php echo $cod_retirada; ?>" type="number" class="form-control" placeholder="C&oacute;digo de retirada" name="codretirada" id="codretirada" min="1">
 											</div>
 										</div>
 												
@@ -111,6 +115,6 @@ $("#frmDesperdicio").submit(function( event ) {
 <?php
 $pagemaincontent = ob_get_contents ();
 ob_end_clean ();
-$pagetitle = "Registro de desperdicio"; // NOME DESSA PÃ?GINA
+$pagetitle = "Registro de desperdicio"; // NOME DESSA Pï¿½?GINA
 include ("masterpage.php"); // Caminho da "masterpage.php"
 ?>
