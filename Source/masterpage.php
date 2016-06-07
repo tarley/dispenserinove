@@ -1,10 +1,10 @@
-<?php 
-session_start();
+<?php
+session_start ();
 require_once 'classes/CrudUsuario.php';
-$usuario = new Usuario();
-if(!$usuario->is_loggedin()){
-	$usuario->logout();
-	$usuario->redirect("index.php");
+$usuario = new Usuario ();
+if (! $usuario->is_loggedin ()) {
+	$usuario->logout ();
+	$usuario->redirect ( "index.php" );
 }
 ?>
 <!doctype html>
@@ -18,6 +18,7 @@ if(!$usuario->is_loggedin()){
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="theme-color" content="#3e454c">
+<link rel="icon" href="img/icon.png">
 
 <title>Dispenser Inove - <?php echo $pagetitle; ?></title>
 
@@ -38,9 +39,9 @@ if(!$usuario->is_loggedin()){
 <!-- Admin Stye -->
 <link rel="stylesheet" href="css/style.css">
 <!-- DatePicker -->
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
 
-<link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -51,10 +52,12 @@ if(!$usuario->is_loggedin()){
 <body>
 	<div class="brand clearfix">
 		<a href="#" class="logo" style="padding: 3px;"><img src="img/logo.png"
-			class="img-responsive" alt="" style="width: 99%; height: auto; margin: 0; padding: 0;"></a> <span class="menu-btn"><i
-			class="fa fa-bars"></i></span>
+			class="img-responsive" alt=""
+			style="width: 99%; height: auto; margin: 0; padding: 0;"></a> <span
+			class="menu-btn"><i class="fa fa-bars"></i></span>
 		<ul class="ts-profile-nav">
-			<li class="ts-account"><a href="#"> <?php echo $_SESSION['user_session']['nom_func']; ?> <i class="fa fa-angle-down hidden-side"></i></a>
+			<li class="ts-account"><a href="#"> <?php echo $_SESSION['user_session']['nom_func']; ?> <i
+					class="fa fa-angle-down hidden-side"></i></a>
 				<ul>
 					<li><a href="#">Minha Conta</a></li>
 					<li><a href="sair.php">Sair</a></li>
@@ -65,9 +68,10 @@ if(!$usuario->is_loggedin()){
 	<div class="ts-main-content">
 		<nav class="ts-sidebar" id="menu">
 			<ul class="ts-sidebar-menu">
-				
+
 				<li class="ts-label">Menu</li>
-				<li><a href="NovaRetirada.php"><i class="fa fa-plus-square-o"></i> Nova Retirada</a></li>
+				<li><a href="NovaRetirada.php"><i class="fa fa-plus-square-o"></i>
+						Nova Retirada</a></li>
 				<li><a href="#"><i class="fa fa-search"></i> Consultar</a>
 					<ul>
 						<li><a href="ConsultarPaciente.php">Paciente</a></li>
@@ -76,8 +80,7 @@ if(!$usuario->is_loggedin()){
 						<?php if($usuario->is_admin()){ ?>
 						<li><a href="ConsultarUsuario.php">Usu&aacute;rio</a></li>
 						<?php } ?>
-					</ul>
-				</li>
+					</ul></li>
 				</li>
 				<li><a href="#"><i class="fa fa-plus"></i> Cadastrar</a>
 					<ul>
@@ -87,14 +90,11 @@ if(!$usuario->is_loggedin()){
 						<?php if($usuario->is_admin()){ ?>
 						<li><a href="CadastroUsuario.php">Usu&aacute;rio</a></li>
 						<?php } ?>
-					</ul>
-				</li>
-				<li>
-					<a href="#"><i class="fa fa-file-text-o"></i>Relatórios</a>
+					</ul></li>
+				<li><a href="#"><i class="fa fa-file-text-o"></i>Relatórios</a>
 					<ul>
 						<li><a href="RelatorioDesperdicio.php">Relatório de Desperdício</a></li>
-					</ul>
-				</li>
+					</ul></li>
 				<ul class="ts-profile-nav">
 					<li class="ts-account"><a href="#"><?php echo $_SESSION[user_session][nom_func]; ?><i
 							class="fa fa-angle-down hidden-side"></i></a>
@@ -133,10 +133,10 @@ if(!$usuario->is_loggedin()){
 	<script src="js/main.js"></script>
 	<script src="js/jquery-1.8.2.js"></script>
 	<script src="js/jquery-ui.js"></script>
-	<script src="js/datepicker-pt-BR.js"></script>	
-	<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
-	
-	
+	<script src="js/datepicker-pt-BR.js"></script>
+
+
+
 </body>
 
 </html>

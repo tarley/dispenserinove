@@ -38,11 +38,6 @@ $lista = $r->getByFilter();
 	</div>
 </div>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#produtos').multiselect();
-    });
-</script>
 <?php
     $pagemaincontent = ob_get_contents();
     ob_end_clean();
