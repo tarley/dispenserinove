@@ -49,7 +49,7 @@ if(!$usuario->is_loggedin()){
 
 <body>
 	<div class="brand clearfix">
-		<a href="index.html" class="logo" style="padding: 3px;"><img src="img/logo.png"
+		<a href="#" class="logo" style="padding: 3px;"><img src="img/logo.png"
 			class="img-responsive" alt="" style="width: 99%; height: auto; margin: 0; padding: 0;"></a> <span class="menu-btn"><i
 			class="fa fa-bars"></i></span>
 		<ul class="ts-profile-nav">
