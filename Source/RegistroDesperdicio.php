@@ -8,20 +8,18 @@ ob_start ();
 		$u = new Util();
 		$crud = new CrudDesperdicio();
 		
-		if($crud->insertDesp($_POST["codretirada"], $_POST["data"], $_POST["quantidade"], $_POST["motivo"])){
-			$u->alerta("Desperdício registrado com sucesso!");
-		}else{
-			$u->alerta("Erro ao tentar registrar desperdício!");
-		}
-	}
+                if($crud->retornoExiste($_POST["codretirada"])) {
+                    if($crud->insertDesp($_POST["codretirada"], $_POST["quantidade"], $_POST["motivo"])){
+                            $u->alerta("Desperdício registrado com sucesso!");
+							$crud->alteraStatus("codretirada");
+                    }else{
+                        $u->alerta("Erro ao tentar registrar desperdício!");
+					}
+				}else{
+					$u->alerta("Desperdício já registrado!");
+				}
+        }
 	
-		/*$codretirada $_POST["codretirada"];
-		$data = $_POST["data"];
-		$quantidade = $_POST["quantidade"];
-		$motivo = $_POST["motivo"];
-		$sql = "INSERT INTO historico_retorno (cod_retirada,dta_retorno,num_quant_retorno,des_motivo) VALUES (:codretirada,:data,:quantidade,:motivo) ";;
-		$conn->query($sql);
-		$conn = null;*/
 ?>
 
 
@@ -42,14 +40,7 @@ ob_start ();
 							<form method="post" class="form-horizontal">
 								<div class="row">
 									<div class="col-md-6">
-										<!-- Codigo autoincrement
-										<div class="form-group">
-											<label class="col-sm-3 control-label">C&oacute;digo de retorno</label>
-											<div class="col-sm-9">
-												<input required="true" type="number" class="form-control" placeholder="C&oacute;digo do retorno" name="codretorno" id="codretorno">
-											</div>
-										</div>
-										-->		
+				
 										<div class="form-group">
 											<label class="col-sm-3 control-label">C&oacute;digo de retirada do produto</label>
 											<div class="col-sm-9">
@@ -72,15 +63,6 @@ ob_start ();
 											</div>
 										</div>
 												
-									</div>
-									
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="col-sm-3 control-label">Data de retorno</label>
-											<div class="col-sm-9">
-												<input required="true" type="text" class="form-control" placeholder="Data de retorno" id="datepicker" name="data">	
-											</div>
-										</div>
 									</div>
 											
 									<div class="col-md-12 col-sm-offset-1">
@@ -129,6 +111,6 @@ $("#frmDesperdicio").submit(function( event ) {
 <?php
 $pagemaincontent = ob_get_contents ();
 ob_end_clean ();
-$pagetitle = "Registro de desperdicio"; // NOME DESSA PÁGINA
+$pagetitle = "Registro de desperdicio"; // NOME DESSA P�?GINA
 include ("masterpage.php"); // Caminho da "masterpage.php"
 ?>
