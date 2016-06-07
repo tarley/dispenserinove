@@ -45,8 +45,9 @@ class CrudRetirada {
 		try {
 			$sql = "select cod_retirada from produto_retirado ";
 			$sql .= "where cod_atendimento=:cod_paciente and cod_produto=:cod_produto ";
-			$sql .= "and cod_status<>(select cod_status from situacao_produto where des_status<>'Desperdício' limit 1) ";
-			$sql .= "and cod_status<>(select cod_status from situacao_produto where des_status<>'Baixado' limit 1)";
+			$sql .= "and cod_status<>(select cod_status from situacao_produto where des_status='Desperdício' limit 1) ";
+			$sql .= "and cod_status<>(select cod_status from situacao_produto where des_status='Vencido' limit 1)";
+			$sql .= "and cod_status<>(select cod_status from situacao_produto where des_status='Baixado' limit 1)";
 			
 			$stmt = $this->db->prepare ( $sql );
 			$stmt->execute ( array (
@@ -94,5 +95,21 @@ class CrudRetirada {
 		} catch ( PDOException $e ) {
 			return null;
 		}
+	}
+	
+	public function alterarStatus($cod_status, $cod_retirada){
+		try {
+			$sql .= "update produto_retirado ";
+			$sql .= "set cod_status=:cod_status where cod_retirada=:cod_retirada";
+				
+			$stmt = $this->db->prepare ( $sql );
+				
+			$stmt->bindparam ( ":cod_status", $cod_status, PDO::PARAM_INT );
+			$stmt->bindparam ( ":cod_retirada", $cod_retirada, PDO::PARAM_INT );
+				
+			return $stmt->execute () ? true : false;
+		} catch ( PDOException $e ) {
+			return false;
+		}		
 	}
 }

@@ -58,7 +58,7 @@ if (isset ( $_GET ['paciente'] ) && isset($_GET['medicamento'])){
 					<th>Qtd. Sa&iacute;da</th>
 					<th>Data Sa&iacute;da</th>
 					<th>Status</th>
-					
+					<th>Editar Status</th>
 				</tr>
 
 			</thead>
@@ -71,6 +71,11 @@ if (isset ( $_GET ['paciente'] ) && isset($_GET['medicamento'])){
 					<td><?php echo $value[num_quant_saida]; ?></td>
 					<td><?php echo $value[dta_saida]; ?></td>
 					<td><?php echo $value[des_status]; ?></td>
+					<td class="text-center">
+						<a href="<?php echo "StatusRetirada.php?cod_retirada=".$value["cod_retirada"]; ?>">
+							<i class="fa fa-pencil"></i>
+						</a>
+					</td>
 				</tr>
 				<?php }?>
 			</tbody>

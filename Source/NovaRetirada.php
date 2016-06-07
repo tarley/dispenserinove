@@ -22,22 +22,23 @@ if (isset ( $_GET ['n_atendimento'] )) {
 		$lista = $retirada->getByPaciente ( $_GET ['n_atendimento'] );
 		$paciente = $_GET ['n_atendimento'];
 	} else {
-		$u->Redirect ( 'NovaRetirada.php', false );
+		$u->alerta ( "Paciente não cadastrado!" );
+		echo "<script>window.location='CadastroPaciente.php'</script>";
 	}
 }
 
 if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
 	if ( $retirada->validaRetirada ( $_POST ['paciente'], $_POST ['cod_produto'] )) {
-		if ($retirada->insert ( $_POST ['paciente'], $_POST ['cod_produto'], $_POST ['cod_status'], $_SESSION ['user_session'] ['cod_func'], $_POST ['qtd'])) {
+		if ($retirada->insert ( $_POST ['paciente'], $_POST ['cod_produto'], $_SESSION ['user_session'] ['cod_func'], $_POST ['qtd'])) {
 			$u->alerta ( "Retidada de medicamentos gravada com sucesso!" );
 		} else {
 			$u->alerta ( "Erro ao tentar gravar Retidada de medicamentos!" );
-			echo "<script>location.reload();</script>";
+			echo "<script>window.location='NovaRetirada.php?n_atendimento=$_POST[paciente]'</script>";
 		}
 	}
 	else{
 		$u->alerta ( "Paciente já possui esse produto vinculado!" );
-		echo "<script>location.reload();</script>";
+		echo "<script>window.location='NovaRetirada.php?n_atendimento=$_POST[paciente]'</script>";
 	}
 }
 ?>
@@ -90,17 +91,6 @@ if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
 						</div>
 					</div>
 					<div class="col-md-4">
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Status:</label>
-							<div class="col-sm-8">
-								<select class="form-control" name="cod_status" id="status">
-									<option>Selecione</option>
-									<?php
-									$situacao->comboSituacao ();
-									?>
-								</select>
-							</div>
-						</div>
 					</div>
 					<div class="col-md-4">
 						<button class="btn btn-primary" type="submit"
@@ -121,6 +111,7 @@ if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
 						<th>Qtd</th>
 						<th>Data Saida</th>
 						<th>Status</th>
+						<th class="text-center">Editar Status</th>
 					</tr>			
 					<?php foreach($lista as $key => $value) { ?>
 					<tr>
@@ -130,6 +121,11 @@ if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
 						<td><?php echo $value["num_quant_saida"]; ?></td>
 						<td><?php echo $value["dta_saida"]; ?></td>
 						<td><?php echo $value["des_status"]; ?></td>
+						<td class="text-center">
+							<a href="<?php echo "StatusRetirada.php?cod_retirada=".$value["cod_retirada"]; ?>">
+								<i class="fa fa-pencil"></i>
+							</a>
+						</td>
 					</tr>
 					<?php } ?>
 				</table>
