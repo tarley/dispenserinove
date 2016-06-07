@@ -21,12 +21,14 @@ class RelatorioDesperdicio {
 			return null;
 		}
 	}
-	public function getGrafico() {
+	public function getSum() {
 		try {
-			$sql = "select distinct p.des_produto, SUM(hr.num_quant_retorno) as qtd from produto_retirado pr ";
+			$sql = "select p.des_produto, SUM(hr.num_quant_retorno) as qtd from produto_retirado pr ";
 			$sql .= "join produto p on p.cod_produto=pr.cod_produto ";
 			$sql .= "join historico_retorno hr on hr.cod_retirada=pr.cod_retirada ";
-			$sql .= "where  pr.cod_status=(select cod_status from situacao_produto where des_status='desperdício' limit 1)";
+			$sql .= "where  pr.cod_status=(select cod_status from situacao_produto where des_status='desperdício' limit 1) ";
+			$sql .= "group by pr.cod_produto, p.des_produto ";
+			$sql .= "order by qtd desc;";
 			$sth = $this->db->prepare ( $sql );
 			$sth->execute ();
 			

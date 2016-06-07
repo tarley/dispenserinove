@@ -93,7 +93,8 @@ if (! $usuario->is_loggedin ()) {
 					</ul></li>
 				<li><a href="#"><i class="fa fa-file-text-o"></i>Relatórios</a>
 					<ul>
-						<li><a href="RelatorioDesperdicio.php">Relatório de Desperdício</a></li>
+						<li><a href="RelatorioDesperdicio.php">Desperdício</a></li>
+						<li><a href="RelatorioDesperdicioSum.php">Desperdício (Somatório)</a></li>
 					</ul></li>
 				<ul class="ts-profile-nav">
 					<li class="ts-account"><a href="#"><?php echo $_SESSION[user_session][nom_func]; ?><i
