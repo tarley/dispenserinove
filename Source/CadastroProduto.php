@@ -21,7 +21,7 @@
 ?>
 
 <div class="panel panel-default">
-	<div class="panel-heading">Cadastro de Produtos</div>
+	<div class="panel-heading">Cadastro de Produto</div>
 	<div class="panel-body">
 		<form method="post" class="form-horizontal" id="frmProduto">
 			<div class="row">
