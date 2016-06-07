@@ -28,7 +28,7 @@ if (isset ( $_GET ['nome'] ) || isset ( $_GET ['status'] )) {
 			<div class="col-md-12">
 				<form class="form-inline" id="frmUsuario" method="get" action="">
 					<div class="form-group">
-						<label for="nomw">Name</label> <input type="text"
+						<label for="nomw">Nome</label> <input type="text"
 							class="form-control" id="nome">
 					</div>
 					<div class="form-group">
