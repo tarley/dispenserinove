@@ -22,7 +22,7 @@ class CrudRetirada {
 			return null;
 		}
 	}
-	public function insert($cod_atendimento, $cod_produto, $cod_status, $cod_func, $num_qtd_saida) {
+	public function insert($cod_atendimento, $cod_produto, $cod_func, $num_qtd_saida) {
 		try {
 			$sql .= "INSERT INTO produto_retirado ";
 			$sql .= "(cod_atendimento, cod_produto, cod_status, cod_func, num_quant_saida, dta_saida) ";
